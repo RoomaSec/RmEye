@@ -1,0 +1,1874 @@
+{
+    "guid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+    "versions": [
+        {
+            "version": 1,
+            "events": [
+                {
+                    "id": 17,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 17,
+                    "task_string": "Pipe Created (rule: PipeEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Pipe Created:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nProcessGuid: %4\r\nProcessId: %5\r\nPipeName: %6\r\nImage: %7\r\nUser: %8",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "PipeName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 18,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 18,
+                    "task_string": "Pipe Connected (rule: PipeEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Pipe Connected:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nProcessGuid: %4\r\nProcessId: %5\r\nPipeName: %6\r\nImage: %7\r\nUser: %8",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "PipeName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 2,
+            "events": [
+                {
+                    "id": 8,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 8,
+                    "task_string": "CreateRemoteThread detected (rule: CreateRemoteThread)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "CreateRemoteThread detected:\r\nRuleName: %1\r\nUtcTime: %2\r\nSourceProcessGuid: %3\r\nSourceProcessId: %4\r\nSourceImage: %5\r\nTargetProcessGuid: %6\r\nTargetProcessId: %7\r\nTargetImage: %8\r\nNewThreadId: %9\r\nStartAddress: %10\r\nStartModule: %11\r\nStartFunction: %12\r\nSourceUser: %13\r\nTargetUser: %14",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SourceProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "SourceProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "SourceImage",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "TargetProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "TargetImage",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "NewThreadId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "StartAddress",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "StartModule",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "StartFunction",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SourceUser",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetUser",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 9,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 9,
+                    "task_string": "RawAccessRead detected (rule: RawAccessRead)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "RawAccessRead detected:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nDevice: %6\r\nUser: %7",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Device",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 11,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 11,
+                    "task_string": "File created (rule: FileCreate)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "File created:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nTargetFilename: %6\r\nCreationUtcTime: %7\r\nUser: %8",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetFilename",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "CreationUtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 12,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 12,
+                    "task_string": "Registry object added or deleted (rule: RegistryEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Registry object added or deleted:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nProcessGuid: %4\r\nProcessId: %5\r\nImage: %6\r\nTargetObject: %7\r\nUser: %8",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetObject",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 13,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 13,
+                    "task_string": "Registry value set (rule: RegistryEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Registry value set:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nProcessGuid: %4\r\nProcessId: %5\r\nImage: %6\r\nTargetObject: %7\r\nDetails: %8\r\nUser: %9",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetObject",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Details",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 14,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 14,
+                    "task_string": "Registry object renamed (rule: RegistryEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Registry object renamed:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nProcessGuid: %4\r\nProcessId: %5\r\nImage: %6\r\nTargetObject: %7\r\nNewName: %8\r\nUser: %9",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetObject",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "NewName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 15,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 15,
+                    "task_string": "File stream created (rule: FileCreateStreamHash)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "File stream created:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nTargetFilename: %6\r\nCreationUtcTime: %7\r\nHash: %8\r\nContents: %9\r\nUser: %10",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetFilename",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "CreationUtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hash",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Contents",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 3,
+            "events": [
+                {
+                    "id": 4,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 4,
+                    "task_string": "Sysmon service state changed",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Sysmon service state changed:\r\nUtcTime: %1\r\nState: %2\r\nVersion: %3\r\nSchemaVersion: %4",
+                    "fields": [
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "State",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Version",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SchemaVersion",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 5,
+                    "task_string": "Process terminated (rule: ProcessTerminate)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Process terminated:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nUser: %6",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 7,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 7,
+                    "task_string": "Image loaded (rule: ImageLoad)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Image loaded:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nImageLoaded: %6\r\nFileVersion: %7\r\nDescription: %8\r\nProduct: %9\r\nCompany: %10\r\nOriginalFileName: %11\r\nHashes: %12\r\nSigned: %13\r\nSignature: %14\r\nSignatureStatus: %15\r\nUser: %16",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ImageLoaded",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "FileVersion",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Description",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Product",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Company",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "OriginalFileName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hashes",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Signed",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Signature",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SignatureStatus",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 10,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 10,
+                    "task_string": "Process accessed (rule: ProcessAccess)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Process accessed:\r\nRuleName: %1\r\nUtcTime: %2\r\nSourceProcessGUID: %3\r\nSourceProcessId: %4\r\nSourceThreadId: %5\r\nSourceImage: %6\r\nTargetProcessGUID: %7\r\nTargetProcessId: %8\r\nTargetImage: %9\r\nGrantedAccess: %10\r\nCallTrace: %11\r\nSourceUser: %12\r\nTargetUser: %13",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SourceProcessGUID",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "SourceProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "SourceThreadId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "SourceImage",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetProcessGUID",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "TargetProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "TargetImage",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "GrantedAccess",
+                            "type": 20,
+                            "type_name": "HexInt32"
+                        },
+                        {
+                            "name": "CallTrace",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SourceUser",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetUser",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 16,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 16,
+                    "task_string": "Sysmon config state changed",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Sysmon config state changed:\r\nUtcTime: %1\r\nConfiguration: %2\r\nConfigurationFileHash: %3",
+                    "fields": [
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Configuration",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ConfigurationFileHash",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 19,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 19,
+                    "task_string": "WmiEventFilter activity detected (rule: WmiEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "WmiEventFilter activity detected:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nOperation: %4\r\nUser: %5\r\nEventNamespace: %6\r\nName: %7\r\nQuery: %8",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Operation",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventNamespace",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Name",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Query",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 20,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 20,
+                    "task_string": "WmiEventConsumer activity detected (rule: WmiEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "WmiEventConsumer activity detected:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nOperation: %4\r\nUser: %5\r\nName: %6\r\nType: %7\r\nDestination: %8",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Operation",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Name",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Type",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Destination",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 21,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 21,
+                    "task_string": "WmiEventConsumerToFilter activity detected (rule: WmiEvent)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "WmiEventConsumerToFilter activity detected:\r\nRuleName: %1\r\nEventType: %2\r\nUtcTime: %3\r\nOperation: %4\r\nUser: %5\r\nConsumer: %6\r\nFilter: %7",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "EventType",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Operation",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Consumer",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Filter",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 255,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 255,
+                    "task_string": "Error report",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 2,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Error report:\r\nUtcTime: %1\r\nID: %2\r\nDescription: %3",
+                    "fields": [
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ID",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Description",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 4,
+            "events": [
+                {
+                    "id": 6,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 6,
+                    "task_string": "Driver loaded (rule: DriverLoad)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Driver loaded:\r\nRuleName: %1\r\nUtcTime: %2\r\nImageLoaded: %3\r\nHashes: %4\r\nSigned: %5\r\nSignature: %6\r\nSignatureStatus: %7",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ImageLoaded",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hashes",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Signed",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Signature",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SignatureStatus",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 5,
+            "events": [
+                {
+                    "id": 1,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 1,
+                    "task_string": "Process Create (rule: ProcessCreate)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Process Create:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nFileVersion: %6\r\nDescription: %7\r\nProduct: %8\r\nCompany: %9\r\nOriginalFileName: %10\r\nCommandLine: %11\r\nCurrentDirectory: %12\r\nUser: %13\r\nLogonGuid: %14\r\nLogonId: %15\r\nTerminalSessionId: %16\r\nIntegrityLevel: %17\r\nHashes: %18\r\nParentProcessGuid: %19\r\nParentProcessId: %20\r\nParentImage: %21\r\nParentCommandLine: %22\r\nParentUser: %23",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "FileVersion",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Description",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Product",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Company",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "OriginalFileName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "CommandLine",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "CurrentDirectory",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "LogonGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "LogonId",
+                            "type": 21,
+                            "type_name": "HexInt64"
+                        },
+                        {
+                            "name": "TerminalSessionId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "IntegrityLevel",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hashes",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ParentProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ParentProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "ParentImage",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ParentCommandLine",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ParentUser",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 2,
+                    "task_string": "File creation time changed (rule: FileCreateTime)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "File creation time changed:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nTargetFilename: %6\r\nCreationUtcTime: %7\r\nPreviousCreationUtcTime: %8\r\nUser: %9",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetFilename",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "CreationUtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "PreviousCreationUtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 3,
+                    "task_string": "Network connection detected (rule: NetworkConnect)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Network connection detected:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nUser: %6\r\nProtocol: %7\r\nInitiated: %8\r\nSourceIsIpv6: %9\r\nSourceIp: %10\r\nSourceHostname: %11\r\nSourcePort: %12\r\nSourcePortName: %13\r\nDestinationIsIpv6: %14\r\nDestinationIp: %15\r\nDestinationHostname: %16\r\nDestinationPort: %17\r\nDestinationPortName: %18",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Protocol",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Initiated",
+                            "type": 13,
+                            "type_name": "Boolean"
+                        },
+                        {
+                            "name": "SourceIsIpv6",
+                            "type": 13,
+                            "type_name": "Boolean"
+                        },
+                        {
+                            "name": "SourceIp",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SourceHostname",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "SourcePort",
+                            "type": 6,
+                            "type_name": "UInt16"
+                        },
+                        {
+                            "name": "SourcePortName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "DestinationIsIpv6",
+                            "type": 13,
+                            "type_name": "Boolean"
+                        },
+                        {
+                            "name": "DestinationIp",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "DestinationHostname",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "DestinationPort",
+                            "type": 6,
+                            "type_name": "UInt16"
+                        },
+                        {
+                            "name": "DestinationPortName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 22,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 22,
+                    "task_string": "Dns query (rule: DnsQuery)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Dns query:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nQueryName: %5\r\nQueryStatus: %6\r\nQueryResults: %7\r\nImage: %8\r\nUser: %9",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "QueryName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "QueryStatus",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "QueryResults",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 23,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 23,
+                    "task_string": "File Delete archived (rule: FileDelete)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "File Delete archived:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nUser: %5\r\nImage: %6\r\nTargetFilename: %7\r\nHashes: %8\r\nIsExecutable: %9\r\nArchived: %10",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetFilename",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hashes",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "IsExecutable",
+                            "type": 13,
+                            "type_name": "Boolean"
+                        },
+                        {
+                            "name": "Archived",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 24,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 24,
+                    "task_string": "Clipboard changed (rule: ClipboardChange)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Clipboard changed:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nSession: %6\r\nClientInfo: %7\r\nHashes: %8\r\nArchived: %9\r\nUser: %10",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Session",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "ClientInfo",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hashes",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Archived",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 25,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 25,
+                    "task_string": "Process Tampering (rule: ProcessTampering)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "Process Tampering:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nImage: %5\r\nType: %6\r\nUser: %7",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Type",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        }
+                    ]
+                },
+                {
+                    "id": 26,
+                    "channel": 16,
+                    "channel_string": "Microsoft-Windows-Sysmon/Operational",
+                    "task": 26,
+                    "task_string": "File Delete logged (rule: FileDeleteDetected)",
+                    "opcode": 0,
+                    "opcode_string": "Info",
+                    "level": 4,
+                    "keywords": 9223372036854775808,
+                    "keywords_string": [
+                        "Microsoft-Windows-Sysmon/Operational"
+                    ],
+                    "message": "File Delete logged:\r\nRuleName: %1\r\nUtcTime: %2\r\nProcessGuid: %3\r\nProcessId: %4\r\nUser: %5\r\nImage: %6\r\nTargetFilename: %7\r\nHashes: %8\r\nIsExecutable: %9",
+                    "fields": [
+                        {
+                            "name": "RuleName",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "UtcTime",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "ProcessGuid",
+                            "type": 15,
+                            "type_name": "GUID"
+                        },
+                        {
+                            "name": "ProcessId",
+                            "type": 8,
+                            "type_name": "UInt32"
+                        },
+                        {
+                            "name": "User",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Image",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "TargetFilename",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "Hashes",
+                            "type": 1,
+                            "type_name": "UnicodeString"
+                        },
+                        {
+                            "name": "IsExecutable",
+                            "type": 13,
+                            "type_name": "Boolean"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "channels": [
+        {
+            "name": "Microsoft-Windows-Sysmon/Operational",
+            "value": 16
+        }
+    ],
+    "opcodes": [
+        {
+            "name": "Info",
+            "value": 0
+        }
+    ],
+    "tasks": [
+        {
+            "name": "RawAccessRead detected (rule: RawAccessRead)",
+            "value": 9
+        },
+        {
+            "name": "Pipe Created (rule: PipeEvent)",
+            "value": 17
+        },
+        {
+            "name": "Pipe Connected (rule: PipeEvent)",
+            "value": 18
+        },
+        {
+            "name": "CreateRemoteThread detected (rule: CreateRemoteThread)",
+            "value": 8
+        },
+        {
+            "name": "File created (rule: FileCreate)",
+            "value": 11
+        },
+        {
+            "name": "Registry object added or deleted (rule: RegistryEvent)",
+            "value": 12
+        },
+        {
+            "name": "Registry value set (rule: RegistryEvent)",
+            "value": 13
+        },
+        {
+            "name": "Registry object renamed (rule: RegistryEvent)",
+            "value": 14
+        },
+        {
+            "name": "File stream created (rule: FileCreateStreamHash)",
+            "value": 15
+        },
+        {
+            "name": "Sysmon service state changed",
+            "value": 4
+        },
+        {
+            "name": "Process terminated (rule: ProcessTerminate)",
+            "value": 5
+        },
+        {
+            "name": "Image loaded (rule: ImageLoad)",
+            "value": 7
+        },
+        {
+            "name": "Process accessed (rule: ProcessAccess)",
+            "value": 10
+        },
+        {
+            "name": "Sysmon config state changed",
+            "value": 16
+        },
+        {
+            "name": "WmiEventFilter activity detected (rule: WmiEvent)",
+            "value": 19
+        },
+        {
+            "name": "WmiEventConsumer activity detected (rule: WmiEvent)",
+            "value": 20
+        },
+        {
+            "name": "WmiEventConsumerToFilter activity detected (rule: WmiEvent)",
+            "value": 21
+        },
+        {
+            "name": "Error report",
+            "value": 255
+        },
+        {
+            "name": "Driver loaded (rule: DriverLoad)",
+            "value": 6
+        },
+        {
+            "name": "Process Create (rule: ProcessCreate)",
+            "value": 1
+        },
+        {
+            "name": "File creation time changed (rule: FileCreateTime)",
+            "value": 2
+        },
+        {
+            "name": "Network connection detected (rule: NetworkConnect)",
+            "value": 3
+        },
+        {
+            "name": "Dns query (rule: DnsQuery)",
+            "value": 22
+        },
+        {
+            "name": "File Delete archived (rule: FileDelete)",
+            "value": 23
+        },
+        {
+            "name": "Clipboard changed (rule: ClipboardChange)",
+            "value": 24
+        },
+        {
+            "name": "Process Tampering (rule: ProcessTampering)",
+            "value": 25
+        },
+        {
+            "name": "File Delete logged (rule: FileDeleteDetected)",
+            "value": 26
+        }
+    ],
+    "keywords": [
+        {
+            "name": "Microsoft-Windows-Sysmon/Operational",
+            "description": "",
+            "value": 9223372036854775808
+        }
+    ],
+    "maps": []
+}
