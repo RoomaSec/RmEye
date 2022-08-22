@@ -1,7 +1,7 @@
 ![image](Image/logo.png) 
 
-# DuckSysEye
-SysEye是一个window上的基于att&ck现代EDR设计思想的威胁响应工具.
+# RmEye
+RmEye是一个window上的基于att&ck现代EDR设计思想的威胁响应工具.
 不同于EDR,它轻量、高效.自身定位是轻量级威胁检出工具.
 而不是繁重的、需要付费的、效果不明的所谓的EDR
 
@@ -11,15 +11,15 @@ SysEye是一个window上的基于att&ck现代EDR设计思想的威胁响应工�
 3. 行为检出,让免杀成为过去式.基于att&ck设计,只看行为不看文件.文件类免杀已经成为过去式.
 4. 高扩展性.可随需求定制功能
 
-### SysEye 之所以不是 Edr/Xdr/Mdr/Ndr/XXXXXdr
-1. SysEye没有流量监控
-2. SysEye仅覆盖20%左右的datasource
-3. SysEye没有联动WAF、IPS/IDS
-4. SysEye没有实时拦截功能
+### RmEye 之所以不是 Edr/Xdr/Mdr/Ndr/XXXXXdr
+1. RmEye没有流量监控
+2. RmEye仅覆盖20%左右的datasource
+3. RmEye没有联动WAF、IPS/IDS
+4. RmEye没有实时拦截功能
 5. 对RPC、COM、ALPC基本无能为力
 6. 不支持更高级的扩展检测,如检测脚本、下发规则,主机链
 7. 受限于Sysmon,很多att&ck的T没有覆盖,也无法覆盖.
-请牢记,SysEye自身定位是轻量级威胁检出工具
+请牢记,RmEye自身定位是轻量级威胁检出工具
 
 ### 检出截图
 威胁列表:
@@ -71,8 +71,8 @@ server = http://192.168.111.189:5000
 ```
 其中server改成你的服务端的地址  
 然后分发三个文件给客户端并且放在同一目录:  
-config.ini、install.cmd、SysEye.exe、sysmon.xml、Sysmon64.exe  
-之后管理员身份运行install.cmd安装sysmon与syseye  
+config.ini、install.cmd、RmEye.exe、sysmon.xml、Sysmon64.exe  
+之后管理员身份运行install.cmd安装sysmon与RmEye  
 访问 http://服务器ip:5000(flask默认端口) 查看后台  
 当然一开始啥数据也没有,为了确认是否安装成功可以将webserver.py中的  
 ```
@@ -86,13 +86,13 @@ config.ini、install.cmd、SysEye.exe、sysmon.xml、Sysmon64.exe
 sysmon -i 
 //sysmon加载配置项
 sysmon -c sysmon.xml
-//安装syseye
-syseye /install
+//安装RmEye
+RmEye /install
 ```
 
 ### 卸载
-卸载syseye:
-在syseye目录下执行
+卸载RmEye:
+在RmEye目录下执行
 ```
 SysEye /uninstall
 ```
@@ -101,7 +101,7 @@ SysEye /uninstall
 ```
 sysmon /uninstall
 ```
-即可干净卫生的卸载掉Syseye
+即可干净卫生的卸载掉RmEye
 
 ### 规则相关的问题
 1. 规则目前仅120条,很多攻击面没有覆盖,其他规则请访问《社区》
