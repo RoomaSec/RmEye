@@ -140,8 +140,8 @@ https://github.com/SwiftOnSecurity/sysmon-config
 
 ### 交流
 开源的目的不是为了免费填鸭式教学,或者被免费拿去发公众号引流、去拿去集成产品方案去赚钱,而是要一起完善这个工具,从而实现共赢.
-目前我们有一个社区,供大家交流.
-社区地址:http://xxxxxxxxxx
+扫一扫加入这个工具内部测试群,这样就能获取实时动态
+![image](Image/group.png)
 
 ### 特别感谢
 @Pwn0x01 yara插件  
