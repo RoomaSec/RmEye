@@ -47,7 +47,7 @@ offic宏钓鱼:
 9. 完善目前的插件系统【目前重点】
 10. 云日志检测能力【目前重点】
 ### 安装
-下载release( xxxxxxxx ),里面有客户端,服务端自行clone本项目  
+下载release( https://github.com/RoomaSec/RmEye/releases/tag/pre-release ),里面有客户端,服务端自行clone本项目  
 服务端是python3编写,安装完依赖库后输入
 ```
 python webserver.py
