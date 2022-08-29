@@ -308,6 +308,21 @@ rule = [
     },
     {
         'rules': [
+            'parentimage =~ ".*svchost.exe"',
+            'originalfilename =~ ".*werfault.exe"'
+        ],
+        'score': 60,
+        'name': 'svchost.exe启动了werfault'
+    },
+    {
+        'rules': [
+            'parentimage =~ ".*werfault.exe"',
+        ],
+        'score': 30,
+        'name': '从werfault创建的进程'
+    },
+    {
+        'rules': [
             'originalfilename =~ ".*wscript.exe"',
             'originalfilename =~ ".*cscript.exe"',
         ],

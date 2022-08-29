@@ -4,6 +4,8 @@
 RmEye是一个window上的基于att&ck现代EDR设计思想的威胁响应工具.
 不同于EDR,它轻量、高效.自身定位是轻量级威胁检出工具.
 而不是繁重的、需要付费的、效果不明的所谓的EDR
+RmEye基于att&ck模型,如果您对att&ck模型不熟悉,请先阅读相关文章后再使用:  
+https://key08.com/index.php/2022/08/09/1505.html
 
 ### 功能特点
 1. 基于att&ck设计.所有设计只是为了符合att&ck的攻击路径、攻击链(虽然规则里面没有标注T因为懒惰)
@@ -21,6 +23,10 @@ RmEye是一个window上的基于att&ck现代EDR设计思想的威胁响应工具
 7. 受限于Sysmon,很多att&ck的T没有覆盖,也无法覆盖.
 请牢记,RmEye自身定位是轻量级威胁检出工具
 
+### 最新新闻
+2022/8/29:
+增加uac提权检测插件`uac_bypass_detect`,但是受限于sysmon,没有办法获取RPC信息,因此只能检测一部分的UAC提权行为.并且有误报,请酌情考虑
+
 ### 检出截图
 威胁列表:
 ![image](Image/1.png)
@@ -34,6 +40,8 @@ apt样本:
 ![image](Image/5.png)
 offic宏钓鱼:
 ![image](Image/6.png)
+uac提权检测:
+![image](Image/7.png)
 
 ### 待做列表
 1. 更好的前端(目前是VUE-CDN模式,不太好,想换成VUE-CLI) 已经完成
@@ -47,7 +55,7 @@ offic宏钓鱼:
 9. 完善目前的插件系统【目前重点】
 10. 云日志检测能力【目前重点】
 ### 安装
-下载release( https://github.com/RoomaSec/RmEye/releases/tag/pre-release ),里面有客户端,服务端自行clone本项目  
+下载release( https://github.com/RoomaSec/RmEye/releases ),里面有客户端,服务端自行clone本项目  
 服务端是python3编写,安装完依赖库后输入
 ```
 python webserver.py
@@ -108,7 +116,7 @@ sysmon /uninstall
 2. 规则目前只支持rule_engine与yara的规则,其中yara的规则支持是以插件的形式支持
 3. 目前的规则字段完全依赖sysmon的字段,sysmon的字段请检查根目录下的provider.json(但是请记住纯小写,自行做大小写转换)
 
-规则目前有两种规则:
+规则目前在`Server/rules`目录规则目前有两种规则:
 rule_engine:
 如检测由CMD启动的ipconfig:
 ```

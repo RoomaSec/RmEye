@@ -1,8 +1,6 @@
 
 import json
-from sqlalchemy import false
 import tools
-import time
 
 skip_process_path = ['c:\\program files\\rivet networks\\smartbyte\\raps.exe',
                      'c:\\program files (x86)\\sogouinput\\11.5.0.5352\\pinyinup.exe',
@@ -102,6 +100,7 @@ class Process:
         self.time = time
         self.rmppid = ""
         self.root_rmpid = ""
+        self.plugin_var = {}
         self.md5 = md5
         self.user = user
         self.chain: ProcessChain = None
@@ -150,6 +149,7 @@ class ProcessChain:
         self.rpc_process_chain = ""
         self.time = root_process.time
         self.host = root_process.host
+        self.plugin_var = {}
         self.add_root_process(root_process)
 
     def get_operationlist(self):

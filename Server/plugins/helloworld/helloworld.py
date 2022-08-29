@@ -1,7 +1,5 @@
 import global_vars
-import yara
-import glob
-from pathlib import Path
+#import yara
 
 rm_plugs_config = {
     "enable": False,
