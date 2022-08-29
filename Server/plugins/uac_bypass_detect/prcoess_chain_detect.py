@@ -30,7 +30,7 @@ def rule_new_process_create(current_process: process.Process, host, raw_log_data
             print('[uac bypass detect] detect uac bypass in process chain {}'.format(
                 current_process.path))
             current_process.chain.root_process.plugin_var['uac_flag'] = integritylevel
-            current_process.set_score(300, "[UAC提权]进程权限等级变动")
+            current_process.set_score(30, "进程权限等级变动")
             return global_vars.THREAT_TYPE_PROCESS
         # print('process chain: {} path: {} level: {} log level: {}'.format(
         #    current_process.chain_hash, current_process.path, integritylevel, current_process.chain.root_process.plugin_var['uac_flag']))
