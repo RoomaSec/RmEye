@@ -1,5 +1,6 @@
 import json
 import time
+import operator
 
 import process
 import rule
@@ -193,3 +194,101 @@ def process_log(host, json_log, raw_log):
         if item.risk_score >= config.MAX_THREAT_SCORE:
             item.print_process()
     """
+
+
+def process_raw_log(raw_logs: list) -> list:
+    return_data = []
+    process_chain_list = []
+
+    raw_logs.sort(key=operator.attrgetter("timestamp"))
+
+    def _get_process_chain(pid, host: str) -> process.ProcessChain:
+        for iter in process_chain_list:
+            chain_item: process.ProcessChain = iter
+            if chain_item.host != host:
+                continue
+            process_item = chain_item.find_process_by_pid(pid)
+            if process_item is not None:
+                return chain_item
+        return None
+
+    for log in raw_logs:
+        log: sql.raw_process_log = log
+        pid = log.pid
+        ppid = log.ppid
+        path = log.path
+        params = log.commandline
+        user = log.user
+        hash = log.hash
+        create_time = log.timestamp
+        host = log.host
+        current_process:process.Process = None
+        if path in process.skip_process_path :
+            continue
+        if log.action.lower() == "processcreate":
+
+            chain = _get_process_chain(pid, host)
+            if chain is not None:
+                parent_process = chain.find_process_by_pid(ppid)
+            else:
+                parent_process = None
+
+            if chain is None:
+                # build a process chain
+                current_process = process.Process(
+                    pid, ppid, path, params, create_time, hash, user, host
+                )
+                chain = process.create_chain(current_process)
+                process_chain_list.append(chain)
+            else:
+                current_process = process.Process(
+                    pid, ppid, path, params, create_time, hash, user, host
+                )
+                chain.add_process(current_process, ppid)
+        elif log.action.lower() == "processterminal":
+            chain = _get_process_chain(pid, host)
+            if chain is not None:
+                current_process = chain.find_process_by_pid(pid)
+                current_process.active = False
+                current_process.chain.terminate_count += 1
+                if (
+                    current_process.chain.terminate_count
+                    >= current_process.chain.active_count
+                ):
+                    current_process.chain.active = False
+            else:
+                # 不在指定时段内被创建的进程的结束事件
+                continue
+        else:
+            chain = _get_process_chain(pid, host)
+            if chain is None:
+                continue
+            current_process = chain.find_process_by_pid(pid)
+            if current_process is None:
+                continue
+
+        # if current_process is None :
+        #     breakpoint()
+        start_process = current_process.chain.root_process
+        start_process_info = {
+            "path": start_process.path,
+            "hash": start_process.md5,
+            "params": start_process.params,
+            "user": start_process.user,
+            "create_time": start_process.time,
+        }
+        return_data.append(
+            {
+                "host": current_process.host,
+                "chain_hash": current_process.chain.hash,
+                "hit_rule": log.hit,
+                "time": log.timestamp,
+                "type": log.type,
+                "risk_score": log.score,
+                "id": log.id,
+                "is_end": current_process.chain.active == False,
+                "start_process": start_process_info,
+            }
+        )
+
+    return return_data

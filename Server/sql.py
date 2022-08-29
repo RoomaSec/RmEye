@@ -10,6 +10,7 @@ from sqlalchemy import Column, Integer, String, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import delete
+import sqlalchemy
 import json
 
 g_engine = None
@@ -166,17 +167,19 @@ def push_process_raw(
     return result
 
 
-def select_create_process_raw_log_by_time(start, end):
+def select_process_raw_log_by_time(start: int, end: int):
     global g_rawdata_table
     sql_session = sessionmaker(bind=g_engine)
+    # 用g_rawdata_table 不行, utf8编码问题？
     raw_log = (
         sql_session()
-        .query(g_rawdata_table)
+        .query(raw_process_log)
         .filter(
-            raw_process_log.timestamp >= start,
-            raw_process_log.timestamp < end,
-            raw_process_log.action == "processcreate",
+            sqlalchemy.and_(
+                raw_process_log.timestamp >= start, raw_process_log.timestamp < end
+            )
         )
+        .all()
     )
 
     sql_session().close()
