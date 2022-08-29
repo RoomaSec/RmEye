@@ -163,4 +163,4 @@ if __name__ == "__main__":
     # 如果你觉得日志太多了,去掉这个注释...
     flask_log = logging.getLogger("werkzeug")
     flask_log.setLevel(logging.ERROR)
-    app.run(debug=True, host="127.0.0.1")
+    app.run(debug=True, host="0.0.0.0")
