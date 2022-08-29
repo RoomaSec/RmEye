@@ -53,7 +53,8 @@ def threat_statistics():
         return "Access Denied"
     # sqlite的count啥的还不如自己查出来自己统计
     threat_datas = sql.query_all_threat_log(-1)
-    return_data = {"all": len(threat_datas), "confirm": 0, "ingore": 0, "working": 0}
+    return_data = {"all": len(threat_datas), "confirm": 0,
+                   "ingore": 0, "working": 0}
     for iter in threat_datas:
         if iter[9] == 1:
             return_data["confirm"] += 1
@@ -148,7 +149,8 @@ def log_rescan():
         return "Access Denied"
     start_time = request.args.get("start_time")
     end_time = request.args.get("end_time")
-    raw_logs = sql.select_process_raw_log_by_time(int(start_time), int(end_time))
+    raw_logs = sql.select_process_raw_log_by_time(
+        int(start_time), int(end_time))
     threat_data = log.process_raw_log(raw_logs)
     return {"data": threat_data}
 
@@ -161,4 +163,4 @@ if __name__ == "__main__":
     # 如果你觉得日志太多了,去掉这个注释...
     flask_log = logging.getLogger("werkzeug")
     flask_log.setLevel(logging.ERROR)
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="127.0.0.1")
