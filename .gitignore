@@ -153,3 +153,4 @@ cython_debug/
 
 *.db
 *.zip
+*.db-journal
