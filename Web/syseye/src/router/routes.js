@@ -12,7 +12,8 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: 'dashboard', component: () => import('pages/Dashboard.vue') },
-      { path: 'index', name: 'index', component: () => import('pages/Index.vue') }
+      { path: 'index', name: 'index', component: () => import('pages/Index.vue') },
+      { path: 'index', name: 'whitelist', component: () => import('pages/Whitelist.vue') }
     ]
   },
   // Always leave this as last one,

@@ -1,3 +1,4 @@
+import hash_white_list
 import json
 from flask import Flask
 from flask import request
@@ -8,6 +9,7 @@ import config
 from flask import Flask, render_template, request
 import plugin
 import logging
+import html
 
 app = Flask(
     __name__,
@@ -63,6 +65,59 @@ def threat_statistics():
         if iter[7] == 0:
             return_data["working"] += 1
     return {"data": return_data}
+
+
+@app.route("/api/v1/query/white_list_all", methods=["GET"])
+def white_list_query_all():
+    if request.remote_addr not in config.ALLOW_ACCESS_IP:
+        return "Access Denied"
+    all_list = sql.query_all_white_list()
+    result = []
+    for iter in all_list:
+        result.append({
+            "hash": iter[1],
+            "path": iter[2],
+            "timestamp": iter[3],
+            "reason": iter[4]
+        })
+    return {"status": "success", "result": result}
+
+
+@app.route("/api/v1/query/white_list", methods=["GET"])
+def white_list_query():
+    hash = request.args.get("hash")
+    if request.remote_addr not in config.ALLOW_ACCESS_IP or hash is None or len(hash) == 0:
+        return "Access Denied"
+    hash = hash.lower()
+    result = 0
+    if hash in hash_white_list.g_white_list:
+        result = 1
+    return {"status": "success", "result": result}
+
+
+@app.route("/api/v1/del/white_list", methods=["GET"])
+def white_list_del():
+    hash = request.args.get("hash")
+    if request.remote_addr not in config.ALLOW_ACCESS_IP or hash is None or len(hash) == 0:
+        return "Access Denied"
+    hash = hash.lower()
+    if hash in hash_white_list.g_white_list:
+        sql.delete_white_list(hash)
+        hash_white_list.g_white_list.remove(hash)
+    return {"status": "success"}
+
+
+@app.route("/api/v1/set/white_list", methods=["POST"])
+def white_list_set():
+    body_data = request.data.decode()
+    if request.remote_addr not in config.ALLOW_ACCESS_IP:
+        return "Access Denied"
+    json_data = json.loads(body_data)
+    hash = html.escape(json_data["hash"]).lower()
+    path = html.escape(json_data["path"]).lower()
+    reason = html.escape(json_data["reason"])
+    hash_white_list.add_white_list(path, hash, reason)
+    return {"status": "success"}
 
 
 @app.route("/api/v1/get/process_chain/handle", methods=["GET"])
@@ -159,6 +214,7 @@ if __name__ == "__main__":
     plugin.reload_plugs()
     sql.init()
     rule.init_rule()
+    hash_white_list.synchronization_white_list()
 
     # 如果你觉得日志太多了,去掉这个注释...
     flask_log = logging.getLogger("werkzeug")

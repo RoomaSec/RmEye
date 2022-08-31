@@ -20,6 +20,8 @@ g_rawdata_table = None
 g_rawdata_table_ins = None
 g_threat_table = None
 g_threat_table_ins = None
+g_hash_white_list_table = None
+g_hash_white_list_table_ins = None
 
 
 class raw_process_log(g_base):
@@ -62,6 +64,15 @@ class raw_process_log(g_base):
         return self.id
 
 
+class hash_white_list(g_base):
+    __tablename__ = "hash_white_list"
+    id = Column(Integer, primary_key=True)
+    hash = Column(String)
+    path = Column(String)
+    timestamp = Column(Integer)
+    reason = Column(String)
+
+
 class threat_log(g_base):
     __tablename__ = "threat_log"
     # 定义各字段
@@ -99,8 +110,11 @@ def init():
     global g_rawdata_table_ins
     global g_threat_table
     global g_threat_table_ins
+    global g_hash_white_list_table
+    global g_hash_white_list_table_ins
 
-    g_engine = create_engine("sqlite:///syseye.db?check_same_thread=False", echo=False)
+    g_engine = create_engine(
+        "sqlite:///syseye.db?check_same_thread=False", echo=False)
     g_base.metadata.create_all(g_engine)
     g_metadata = MetaData(g_engine)
     g_rawdata_table = Table("raw_process_log", g_metadata, autoload=True)
@@ -108,6 +122,54 @@ def init():
 
     g_threat_table = Table("threat_log", g_metadata, autoload=True)
     g_threat_table_ins = g_threat_table.insert()
+
+    g_hash_white_list_table = Table(
+        "hash_white_list", g_metadata, autoload=True)
+    g_hash_white_list_table_ins = g_hash_white_list_table.insert()
+
+
+def query_white_list_by_hash(pHash):
+    global g_hash_white_list_table
+    sql_session = sessionmaker(bind=g_engine)
+    white_list = sql_session().query(
+        g_hash_white_list_table).filter_by(hash=pHash).first()
+    sql_session().close()
+    return white_list
+
+
+def delete_white_list(pHash):
+    global g_hash_white_list_table
+    global g_engine
+    conn = g_engine.connect()
+    result = conn.execute(
+        delete(g_hash_white_list_table).where(
+            g_hash_white_list_table.columns.hash == pHash)
+    )
+    return result
+
+
+def push_white_list(pPath, pHash, pReason):
+    global g_hash_white_list_table_ins
+    current_time = int(round(time.time() * 1000))
+    ins = g_hash_white_list_table_ins.values(
+        path=pPath, hash=pHash, reason=pReason, timestamp=current_time)
+    # 连接引擎
+    conn = g_engine.connect()
+    # 执行语句
+    result = conn.execute(ins)
+    return result
+
+
+def query_all_white_list():
+    global g_hash_white_list_table
+    sql_session = sessionmaker(bind=g_engine)
+    white_list = (
+        sql_session()
+        .query(g_hash_white_list_table)
+        .all()
+    )
+    sql_session().close()
+    return white_list
 
 
 def push_process_raw(
@@ -241,7 +303,8 @@ def delete_threat(threat_id):
     global g_engine
     conn = g_engine.connect()
     result = conn.execute(
-        delete(g_threat_table).where(g_threat_table.columns.id == int(threat_id))
+        delete(g_threat_table).where(
+            g_threat_table.columns.id == int(threat_id))
     )
     return result
 

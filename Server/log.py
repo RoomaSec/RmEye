@@ -8,6 +8,7 @@ import sql
 import global_vars
 import config
 import plugin
+import hash_white_list
 
 
 def process_log(host, json_log, raw_log):
@@ -53,8 +54,9 @@ def process_log(host, json_log, raw_log):
                 parent_user,
                 host,
             )
+            is_white_list = hash in hash_white_list.g_white_list
             child = process.Process(
-                pid, ppid, path, params, create_time, hash, parent_user, host
+                pid, ppid, path, params, create_time, hash, parent_user, host, is_white_list
             )
             chain = process.create_chain(parent_process)
             chain.add_process(child, parent_pid)
@@ -63,8 +65,9 @@ def process_log(host, json_log, raw_log):
                 child.set_score(score, rule_hit_name)
                 had_threat = global_vars.THREAT_TYPE_PROCESS
         else:
+            is_white_list = hash in hash_white_list.g_white_list
             child = process.Process(
-                pid, ppid, path, params, create_time, hash, user, host
+                pid, ppid, path, params, create_time, hash, user, host, is_white_list
             )
             parent_process.chain.add_process(child, ppid)
             current_process = child
@@ -81,7 +84,8 @@ def process_log(host, json_log, raw_log):
         pid = log["processid"]
         current_process = process.get_process_by_pid(pid)
         if current_process is not None:
-            plugin.dispath_process_terminal(host, current_process, raw_log, json_log)
+            plugin.dispath_process_terminal(
+                host, current_process, raw_log, json_log)
             current_process.active = False
             current_process.chain.terminate_count += 1
             if current_process.chain.terminate_count >= (
@@ -222,8 +226,8 @@ def process_raw_log(raw_logs: list) -> list:
         hash = log.hash
         create_time = log.timestamp
         host = log.host
-        current_process:process.Process = None
-        if path in process.skip_process_path :
+        current_process: process.Process = None
+        if path in process.skip_process_path:
             continue
         if log.action.lower() == "processcreate":
 

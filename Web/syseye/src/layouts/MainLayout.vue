@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf" style="background-color: rgb(239, 243, 246)">
     <q-header elevated height-hint="98">
       <q-toolbar class="text-primary bg-white">
-        <q-toolbar-title> DuckSysEye内部测试版本v0.0.0.1 </q-toolbar-title>
+        <q-toolbar-title> RmEye内部测试版本v0.0.0.1 </q-toolbar-title>
         <q-btn flat round dense icon="more_vert"></q-btn>
       </q-toolbar>
     </q-header>
@@ -77,23 +77,21 @@
             </q-item-section>
             <q-item-section> 已忽略威胁列表 </q-item-section>
           </q-item>
-          <template v-for="(item, index) in plugin" v-bind:key="index">
-            <q-item
-              :active="selectLabel == item['name']"
-              clickable
-              v-ripple
-              active-class="menu-active"
-              @click="
-                selectLabel = item['name'];
-                routerToPlugin(item['html']);
-              "
-            >
-              <q-item-section avatar>
-                <q-icon :name="item['icon']" />
-              </q-item-section>
-              <q-item-section> {{ item["name"] }} </q-item-section>
-            </q-item>
-          </template>
+          <q-item
+            :active="selectLabel == 'white_list'"
+            clickable
+            v-ripple
+            active-class="menu-active"
+            @click="
+              selectLabel = 'white_list';
+              routerToWhiteList();
+            "
+          >
+            <q-item-section avatar>
+              <q-icon name="list" />
+            </q-item-section>
+            <q-item-section> 白名单列表 </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -116,7 +114,9 @@ import { defineComponent } from 'vue'
 import HtmlPanel from '../components/Html.vue' // 根据实际路径导入
 import axios from 'axios'
 export default defineComponent({
-  components: { HtmlPanel },
+  components: {
+    HtmlPanel
+  },
   name: 'MainLayout',
   setup () {
     return {}
@@ -132,9 +132,20 @@ export default defineComponent({
     }
   },
   methods: {
+    routerToWhiteList () {
+      this.isInPlugin = false
+      this.$router.push({
+        name: 'whitelist'
+      })
+    },
     routerToThreatList (index) {
       this.isInPlugin = false
-      this.$router.push({ name: 'index', params: { queryIndex: index } })
+      this.$router.push({
+        name: 'index',
+        params: {
+          queryIndex: index
+        }
+      })
     },
     routerToPlugin (url) {
       this.isInPlugin = true

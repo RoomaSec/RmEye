@@ -85,7 +85,7 @@ g_ProcessChainList = []
 
 
 class Process:
-    def __init__(self, pid, ppid, path, params, time, md5, user, host):
+    def __init__(self, pid, ppid, path, params, time, md5, user, host, is_white=False):
         self.pid = pid
         self.ppid = ppid
         self.path = path
@@ -105,6 +105,7 @@ class Process:
         self.user = user
         self.chain: ProcessChain = None
         self.host = host
+        self.is_white = is_white
 
     def set_chain_data(self, chain):
         self.chain = chain
@@ -119,6 +120,8 @@ class Process:
         self.rmppid = rmppid
 
     def set_score(self, new_score, opertion):
+        if self.is_white:
+            return
         if opertion not in self.operationlist:
             self.risk_score += new_score
             self.operationlist[opertion] = 1
