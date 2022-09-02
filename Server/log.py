@@ -58,6 +58,8 @@ def process_log(host, json_log, raw_log):
             child = process.Process(
                 pid, ppid, path, params, create_time, hash, parent_user, host, is_white_list
             )
+            parent_process.parent_process = parent_process
+            child.parent_process = parent_process
             chain = process.create_chain(parent_process)
             chain.add_process(child, parent_pid)
             current_process = child
@@ -69,6 +71,7 @@ def process_log(host, json_log, raw_log):
             child = process.Process(
                 pid, ppid, path, params, create_time, hash, user, host, is_white_list
             )
+            child.parent_process = parent_process
             parent_process.chain.add_process(child, ppid)
             current_process = child
             if score > 0:

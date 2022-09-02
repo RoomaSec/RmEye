@@ -87,6 +87,7 @@ g_ProcessChainList = []
 class Process:
     def __init__(self, pid, ppid, path, params, time, md5, user, host, is_white=False):
         self.pid = pid
+        self.parent_process = None
         self.ppid = ppid
         self.path = path
         self.params = params
@@ -120,7 +121,7 @@ class Process:
         self.rmppid = rmppid
 
     def set_score(self, new_score, opertion):
-        if self.is_white:
+        if self.is_white or self.chain.root_process.is_white or self.parent_process.is_white:
             return
         if opertion not in self.operationlist:
             self.risk_score += new_score
