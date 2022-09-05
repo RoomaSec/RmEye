@@ -219,4 +219,6 @@ if __name__ == "__main__":
     # 如果你觉得日志太多了,去掉这个注释...
     flask_log = logging.getLogger("werkzeug")
     flask_log.setLevel(logging.ERROR)
+    print("注意,你正在使用测试版,请随时关注github以获取最新版本:")
+    print("https://github.com/RoomaSec/RmEye")
     app.run(debug=True, host="0.0.0.0")

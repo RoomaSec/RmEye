@@ -161,5 +161,12 @@ rule = [
         ],
         'score': 50,
         'name': '创建可疑文件'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded == "c:\\windows\\system32\\samlib.dll"',
+        ],
+        'score': 10,
+        'name': 'samlib的dll被加载'
     }
 ]
