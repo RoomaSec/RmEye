@@ -54,6 +54,9 @@ def process_log(host, json_log, raw_log):
                 parent_user,
                 host,
             )
+            plugin.dispath_rule_new_process_create(
+                host, parent_process, raw_log, json_log
+            )
             is_white_list = hash in hash_white_list.g_white_list
             child = process.Process(
                 pid, ppid, path, params, create_time, hash, parent_user, host, is_white_list
