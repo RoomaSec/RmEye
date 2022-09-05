@@ -178,22 +178,23 @@ def process_log(host, json_log, raw_log):
             target_image_path = target_process.path
             target_hash = target_process.md5
         self_hash = current_process.md5
-
-    sql.push_process_raw(
-        host,
-        raw_json_log,
-        rule_hit_name,
-        score,
-        chain_hash,
-        had_threat,
-        parent_pid,
-        target_pid,
-        self_hash,
-        target_image_path,
-        target_hash,
-        params,
-        user,
-    )
+    # 以后有其他排除需求再优化
+    if json_log['action'] == 'imageload' and json_log['data']['imageloaded'] not in hash_white_list.g_white_dll_load_list:
+        sql.push_process_raw(
+            host,
+            raw_json_log,
+            rule_hit_name,
+            score,
+            chain_hash,
+            had_threat,
+            parent_pid,
+            target_pid,
+            self_hash,
+            target_image_path,
+            target_hash,
+            params,
+            user,
+        )
 
     """
     for iter in process.g_ProcessChainList:

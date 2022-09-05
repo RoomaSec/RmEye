@@ -1,5 +1,27 @@
 import sql
 g_white_list = []
+g_white_dll_load_list = [
+    'c:\\windows\\system32\\advapi32.dll',
+    'c:\\windows\\system32\\crypt32.dll',
+    'c:\\windows\\system32\\cryptdll.dll',
+    'c:\\windows\\system32\\gdi32.dll',
+    'c:\\windows\\system32\\imm32.dll',
+    'c:\\windows\\system32\\kernel32.dll',
+    'c:\\windows\\system32\\kernelbase.dll',
+    'c:\\windows\\system32\\msasn1.dll',
+    'c:\\windows\\system32\\msvcrt.dll',
+    'c:\\windows\\system32\\ntdll.dll',
+    'c:\\windows\\system32\\rpcrt4.dll',
+    'c:\\windows\\system32\\rsaenh.dll',
+    'c:\\windows\\system32\\samlib.dll',
+    'c:\\windows\\system32\\sechost.dll',
+    'c:\\windows\\system32\\secur32.dll',
+    'c:\\windows\\system32\\shell32.dll',
+    'c:\\windows\\system32\\shlwapi.dll',
+    'c:\\windows\\system32\\sspicli.dll',
+    'c:\\windows\\system32\\user32.dll',
+    'c:\\windows\\system32\\vaultcli.dll',
+]
 
 
 def add_white_list(path, hash, reason):
