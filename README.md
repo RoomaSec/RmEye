@@ -27,7 +27,8 @@ https://key08.com/index.php/2022/08/09/1505.html
 ### 最新新闻
 2022/9/5:  
 增加规则编写教程:  
-https://github.com/RoomaSec/RmEye/blob/main/doc_rule.md  
+https://github.com/RoomaSec/RmEye/blob/main/doc_day0_rule.md  
+增加`mimikatz`检测
 
 2022/8/31:
 增加进程白名单系统,现在能给进程加白名单了.在打开进程链后,点击某个进程加入白名单即可
@@ -52,6 +53,8 @@ offic宏钓鱼:
 ![image](Image/6.png)
 uac提权检测:
 ![image](Image/7.png)
+mimikatz检测:
+![image](Image/14.png)
 
 ### 待做列表
 1. 更好的前端(目前是VUE-CDN模式,不太好,想换成VUE-CLI) 已经完成
@@ -141,7 +144,7 @@ rule_engine:
 分数代表的是本次规则给进程链所增加的分数,报警是根据前面的MAX_THREAT_SCORE设置的
 
 规则编写教程请移步:  
-https://github.com/RoomaSec/RmEye/blob/main/doc_rule.md  
+https://github.com/RoomaSec/RmEye/blob/main/doc_day0_rule.md  
 
 规则引擎的语法请移步:  
 https://github.com/zeroSteiner/rule-engine  

@@ -42,8 +42,8 @@ def rule_new_process_action(current_process, host, raw_log_data, json_log_data):
 
 
 def rule_init():
-    print('[helloworld plugin] rule init')
+    pass
 
 
 def plugin_init():
-    print('[helloworld plugin] plugin init')
+    print('uac提权插件 2022/8/15 by huoji')
