@@ -42,7 +42,7 @@ def rule_new_process_create(current_process: process.Process, host, raw_log_data
 def rule_new_process_action(current_process: process.Process, host, raw_log_data, json_log_data):
     global mimikatz_dll_list
     # 如果日志的action是imageload(dll加载)
-    if json_log_data['action'] == 'imageload' and current_process.plugin_var['mimikatz_detected'] == False:
+    if 'mimikatz_detected' in current_process.plugin_var and json_log_data['action'] == 'imageload' and current_process.plugin_var['mimikatz_detected'] == False:
         # 把日志中的dll路径取出来
         dll_path = json_log_data['data']['imageloaded']
 
