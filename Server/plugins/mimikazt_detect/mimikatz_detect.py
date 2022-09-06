@@ -34,8 +34,9 @@ mimikatz_dll_list = [
 
 def rule_new_process_create(current_process: process.Process, host, raw_log_data, json_log_data):
     # 服务端提供了一个 plugin_var 变量用于存放当前进程插件的上下文
-    current_process.plugin_var['mimikatz_matched_num'] = 0
-    current_process.plugin_var['mimikatz_detected'] = False
+    if current_process.path != 'c:\\windows\\system32\\wbem\\wmic.exe' and current_process.parent_process.path != 'c:\\windows\\system32\\svchost.exe':
+        current_process.plugin_var['mimikatz_matched_num'] = 0
+        current_process.plugin_var['mimikatz_detected'] = False
     return global_vars.THREAT_TYPE_NONE
 
 
@@ -45,15 +46,13 @@ def rule_new_process_action(current_process: process.Process, host, raw_log_data
     if 'mimikatz_detected' in current_process.plugin_var and json_log_data['action'] == 'imageload' and current_process.plugin_var['mimikatz_detected'] == False:
         # 把日志中的dll路径取出来
         dll_path = json_log_data['data']['imageloaded']
-        # 排除误报
-        if current_process.parent_process.path != 'c:\\windows\\system32\\svchost.exe':
-            # 如果dll的路径在mimikatz的路径里面,进程上下文+1
-            if dll_path in mimikatz_dll_list:
-                current_process.plugin_var['mimikatz_matched_num'] += 1
-            if current_process.plugin_var['mimikatz_matched_num'] >= len(mimikatz_dll_list):
-                current_process.set_score(300, "[mimikatz]检测到疑似mimikatz进程")
-                current_process.plugin_var['mimikatz_detected'] = True
-                return global_vars.THREAT_TYPE_PROCESS
+        # 如果dll的路径在mimikatz的路径里面,进程上下文+1
+        if dll_path in mimikatz_dll_list:
+            current_process.plugin_var['mimikatz_matched_num'] += 1
+        if current_process.plugin_var['mimikatz_matched_num'] >= len(mimikatz_dll_list):
+            current_process.set_score(300, "[mimikatz]检测到疑似mimikatz进程")
+            current_process.plugin_var['mimikatz_detected'] = True
+            return global_vars.THREAT_TYPE_PROCESS
     return global_vars.THREAT_TYPE_NONE
 
 
