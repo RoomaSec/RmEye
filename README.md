@@ -175,5 +175,5 @@ https://github.com/SwiftOnSecurity/sysmon-config
 ### 特别感谢
 @Pwn0x01 yara插件  
 @zeroSteiner 规则引擎插件  
-@SwiftOnSecurity 客户端规则
+@SwiftOnSecurity 客户端规则  
 @Fplyth0ner-Combie 规则相关文档
