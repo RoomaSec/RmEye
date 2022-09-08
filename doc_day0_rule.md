@@ -89,7 +89,9 @@ name: 规则名字
 
 ![](Image/12.png)
 
+**完整的 `服务端规则指南`**
 
+[doc_server_rule_manual.md](./doc_server_rule_manual.md)
 
 ### 测试
 
