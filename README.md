@@ -25,6 +25,10 @@ https://key08.com/index.php/2022/08/09/1505.html
 请牢记,RmEye自身定位是轻量级威胁检出工具
 
 ### 最新新闻
+2022/9/8:
+增加服务端规则指南: \
+[doc_server_rule_manual.md](./doc_server_rule_manual.md)
+
 2022/9/5:  
 增加规则编写教程:  
 https://github.com/RoomaSec/RmEye/blob/main/doc_day0_rule.md  
