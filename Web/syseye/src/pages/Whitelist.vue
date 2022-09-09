@@ -1,26 +1,17 @@
 <template>
-    <q-table
-      class="q-pa-lg"
-      :dense="$q.screen.lt.md"
-      title="白名单列表"
-      :columns="data_columns"
-      :rows="data_columns_data"
-      :loading="loading"
-      v-model:pagination="pagination"
-      @request="onRequest"
-    >
-      <template v-slot:body="props">
+<q-table class="q-pa-lg" :dense="$q.screen.lt.md" title="白名单列表" :columns="data_columns" :rows="data_columns_data" :loading="loading" v-model:pagination="pagination" @request="onRequest">
+    <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="path" :props="props">{{ props.row.path }}</q-td>
-          <q-td key="hash" :props="props">{{ props.row.hash }}</q-td>
-          <q-td key="reason" :props="props">{{ props.row.reason }}</q-td>
-          <q-td key="timestamp" :props="props">{{ time_parase(props.row.timestamp) }}</q-td>
-          <q-td key="action" :props="props">
-            <q-btn color="red" label="移除白名单" @click="delete_white_hash(props.row.hash)"/>
-          </q-td>
+            <q-td key="path" :props="props">{{ props.row.path }}</q-td>
+            <q-td key="hash" :props="props">{{ props.row.hash }}</q-td>
+            <q-td key="reason" :props="props">{{ props.row.reason }}</q-td>
+            <q-td key="timestamp" :props="props">{{ time_parase(props.row.timestamp) }}</q-td>
+            <q-td key="action" :props="props">
+                <q-btn color="red" label="移除白名单" @click="delete_white_hash(props.row.hash)" />
+            </q-td>
         </q-tr>
-      </template>
-    </q-table>
+    </template>
+</q-table>
 </template>
 
 <script>
@@ -33,37 +24,36 @@ export default defineComponent({
   name: 'WhiteList',
   data: function () {
     return {
-      data_columns: [
-        {
-          name: 'path',
-          align: 'center',
-          label: '路径',
-          field: 'path'
-        },
-        {
-          name: 'hash',
-          align: 'center',
-          label: 'hash',
-          field: 'hash'
-        },
-        {
-          name: 'reason',
-          align: 'center',
-          label: '原因',
-          field: 'reason'
-        },
-        {
-          name: 'timestamp',
-          align: 'center',
-          label: '时间',
-          field: 'timestamp'
-        },
-        {
-          name: 'action',
-          align: 'center',
-          label: '操作',
-          field: 'steamid'
-        }
+      data_columns: [{
+        name: 'path',
+        align: 'center',
+        label: '路径',
+        field: 'path'
+      },
+      {
+        name: 'hash',
+        align: 'center',
+        label: 'hash',
+        field: 'hash'
+      },
+      {
+        name: 'reason',
+        align: 'center',
+        label: '原因',
+        field: 'reason'
+      },
+      {
+        name: 'timestamp',
+        align: 'center',
+        label: '时间',
+        field: 'timestamp'
+      },
+      {
+        name: 'action',
+        align: 'center',
+        label: '操作',
+        field: 'steamid'
+      }
       ],
       data_columns_data: [],
       loading: false,
@@ -85,7 +75,10 @@ export default defineComponent({
   methods: {
     delete_white_hash (hash) {
       axios.get('/api/v1/del/white_list?hash=' + hash).then(res => {
-        console.log('duck was gone')
+        this.onRequest({
+          pagination: this.pagination,
+          filter: undefined
+        })
       })
     },
     time_parase (pTime) {
@@ -103,22 +96,24 @@ export default defineComponent({
       const s = time.getSeconds()
       return (
         y +
-        '-' +
-        add0(m) +
-        '-' +
-        add0(d) +
-        ' ' +
-        add0(h) +
-        ':' +
-        add0(mm) +
-        ':' +
-        add0(s)
+                '-' +
+                add0(m) +
+                '-' +
+                add0(d) +
+                ' ' +
+                add0(h) +
+                ':' +
+                add0(mm) +
+                ':' +
+                add0(s)
       )
     },
     onRequest (props) {
       this.data_columns_data = []
       this.loading = true
-      const { page } = props.pagination
+      const {
+        page
+      } = props.pagination
       axios.get('/api/v1/query/white_list_all').then(response => {
         const data = response.data.result
         console.log(data)
