@@ -1,6 +1,13 @@
 rule = [
     {
         'rules': [
+            'action == "filecreate" and targetfilename =~ "c:\\users\\.*\\appdata\\roaming\\microsoft\\outlook\\vbaproject.otm"'
+        ],
+        'score': 300,
+        'name': '已知Outlook模板宏持久化行为'
+    },
+    {
+        'rules': [
             'action == "processaccess" and targetimage =~ ".*lsass.exe" and grantedaccess & 0x0010 and sourceimage =~ ".*rundll32.exe"',
         ],
         'score': 300,
