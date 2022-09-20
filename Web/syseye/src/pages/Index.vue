@@ -52,10 +52,24 @@
                                                 </q-chip>
                                             </div>
                                             <div>
-                                                产生的威胁:
-                                                <template v-for="(index, operation) in threat.hit_rule" :key="index">
+                                                ATTCK命中:
+                                                <template v-for="(index, operation) in threat.attck_hit_list" :key="index">
                                                     <q-chip square color="rgb(239,243,246)">
                                                         {{ operation }}&nbsp;({{ index }})
+                                                    </q-chip>
+                                                </template>
+                                            </div>
+                                            <div>
+                                                产生的威胁:
+                                                <template v-for="(index, operation) in threat.hit_rule" :key="index">
+                                                    <q-chip square color="red" text-color="white">
+                                                        {{ operation }}&nbsp;({{ index }})
+                                                    </q-chip>
+                                                </template>
+                                                <template v-if="JSON.stringify(threat.hit_rule) == '{}'">
+                                                    <q-chip square color="negative" text-color="white">
+                                                        <!--crowdstrike: 这活我熟-->
+                                                        机器学习引擎
                                                     </q-chip>
                                                 </template>
                                             </div>
@@ -152,11 +166,32 @@
                 </q-item>
                 <q-separator />
                 <q-item>
-                    <q-item-section>进程命中的规则: <template v-for="(index, operation) in processChainDetails.hitRules" :key="index">
+                    <q-item-section>进程命中的规则:
+                       <template v-for="(index, operation) in processChainDetails.hitRules" :key="index">
                             <q-chip square color="rgb(239,243,246)">
                                 {{ operation }}&nbsp;({{ index }})
                             </q-chip>
-                        </template></q-item-section>
+                        </template>
+                        <template v-if="JSON.stringify(processChainDetails.hitRules) == '{}'">
+                            <q-chip square color="rgb(239,243,246)">
+                                无
+                            </q-chip>
+                        </template>
+                    </q-item-section>
+                </q-item>
+                <q-item>
+                    <q-item-section>attck矩阵:
+                       <template v-for="(index, operation) in processChainDetails.hitAttck" :key="index">
+                            <q-chip square color="rgb(239,243,246)">
+                                {{ operation }}&nbsp;({{ index }})
+                            </q-chip>
+                        </template>
+                        <template v-if="JSON.stringify(processChainDetails.hitAttck) == '{}'">
+                            <q-chip square color="rgb(239,243,246)">
+                                无
+                            </q-chip>
+                        </template>
+                    </q-item-section>
                 </q-item>
                 <q-item>
                     <q-btn icon="search" outline style="color: grey;width: 100%;" label="搜索hash" @click="search_vt(processChainDetails.md5)" />
@@ -197,7 +232,8 @@ export default defineComponent({
       processChainDetails: {
         hash: '',
         prams: '',
-        hitRule: [],
+        hitRules: [],
+        hitAttck: [],
         isWhite: false,
         whiteListReason: ''
       },
@@ -371,7 +407,8 @@ export default defineComponent({
           params: data.params,
           pid: data.pid,
           ppid: data.ppid,
-          hitRules: data.operationlist,
+          hitRules: data.operationlist === undefined ? {} : data.operationlist,
+          hitAttck: data.attck_hit_list === undefined ? {} : data.attck_hit_list,
           isWhite: false
         }
         this.query_white_hash(data.md5)

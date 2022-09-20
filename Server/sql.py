@@ -87,6 +87,8 @@ class threat_log(g_base):
     risk_score = Column(Integer)
     # 命中的规则
     hit_rule = Column(String)
+    # attck命中
+    attck_hit_list = Column(String)
     # json字段
     data = Column(String)
     # 时间戳
@@ -262,7 +264,7 @@ def select_threat_by_chain_id(host, process_chain_hash, type):
 
 
 def update_threat_log(
-    host, risk_score, hit_rule_json, process_chain_hash, raw_json, type, is_end
+    host, risk_score, hit_rule_json, attck_hit_list_json, process_chain_hash, raw_json, type, is_end
 ):
     global g_threat_table
     global g_engine
@@ -272,6 +274,7 @@ def update_threat_log(
         .values(
             risk_score=risk_score,
             hit_rule=hit_rule_json,
+            attck_hit_list=attck_hit_list_json,
             data=raw_json,
             is_end=int(is_end),
         )
@@ -335,6 +338,7 @@ def query_all_threat_log(query_type):
                 threat_log.is_end,
                 threat_log.start_process_info,
                 threat_log.handle_type,
+                threat_log.attck_hit_list,
             )
             .all()
         )
@@ -353,6 +357,7 @@ def query_all_threat_log(query_type):
                 threat_log.is_end,
                 threat_log.start_process_info,
                 threat_log.handle_type,
+                threat_log.attck_hit_list
             )
             .filter_by(handle_type=query_type)
             .all()
@@ -365,6 +370,7 @@ def push_threat_log(
     host,
     risk_score,
     hit_rule_json,
+    attck_hit_list_json,
     process_chain_hash,
     raw_json,
     type,
@@ -378,6 +384,7 @@ def push_threat_log(
         risk_score=risk_score,
         process_chain_hash=process_chain_hash,
         hit_rule=hit_rule_json,
+        attck_hit_list=attck_hit_list_json,
         type=type,
         data=raw_json,
         timestamp=int(round(time.time() * 1000)),

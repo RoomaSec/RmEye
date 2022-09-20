@@ -94,6 +94,8 @@ class Process:
         self.chain_hash = ''
         self.active = True
         self.operationlist = {}
+        self.attck_hit_list = {}
+
         self.risk_score = 0
         self.terminate = False
         self.rmpid = tools.get_md5(
@@ -120,9 +122,16 @@ class Process:
     def set_rmppid(self, rmppid):
         self.rmppid = rmppid
 
+    def set_attck(self, new_score, t, name):
+        if t not in self.attck_hit_list:
+            self.risk_score += new_score
+            self.attck_hit_list[t] = name
+
+        if t not in self.chain.attck_hit_list:
+            self.chain.risk_score += new_score
+            self.chain.attck_hit_list[t] = name
+
     def set_score(self, new_score, opertion):
-        if self.is_white or self.chain.root_process.is_white or self.parent_process.is_white:
-            return
         if opertion not in self.operationlist:
             self.risk_score += new_score
             self.operationlist[opertion] = 1
@@ -146,6 +155,7 @@ class ProcessChain:
         self.terminate_count = 0
         self.risk_score = 0
         self.operationlist = {}
+        self.attck_hit_list = {}
         self.process_list = []
         self.json_arrays = []
         self.active = True
@@ -234,6 +244,7 @@ class ProcessChain:
                     "rmppid": proc_info.rmppid,
                     "params": proc_info.params,
                     "operationlist": proc_info.operationlist,
+                    "attck_hit_list": proc_info.attck_hit_list,
                     "md5": proc_info.md5,
                     "active": proc_info.active,
                     "children": []

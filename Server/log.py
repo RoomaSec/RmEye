@@ -1,6 +1,5 @@
 import json
 import time
-import operator
 
 import process
 import rule
@@ -9,6 +8,66 @@ import global_vars
 import config
 import plugin
 import hash_white_list
+
+LOG_TYPE_PROCESS_CREATE = 1
+LOG_TYPE_PROCESS_ACTION = 2
+
+
+def update_att_ck(process: process.Process, score, hit_name, attck_t_list):
+    if process.is_white or process.chain.root_process.is_white or process.parent_process.is_white:
+        score = 0
+    for t in attck_t_list:
+        process.set_attck(score, t, hit_name)
+    # 更新命中的规则
+    return global_vars.THREAT_TYPE_PROCESS
+
+
+def update_threat(process: process.Process, score, rule_hit_name):
+    had_threat = global_vars.THREAT_TYPE_NONE
+    if process.is_white or process.chain.root_process.is_white or process.parent_process.is_white:
+        return had_threat
+    if score > 0:
+        # 更新命中的规则
+        process.set_score(score, rule_hit_name)
+        had_threat = global_vars.THREAT_TYPE_PROCESS
+    return had_threat
+
+
+def match_threat(process: process.Process, log, log_type):
+    had_threat = global_vars.THREAT_TYPE_NONE
+    success_match = False
+    hit_name = ''
+    hit_score = 0
+    is_ioa = False
+    if log_type == LOG_TYPE_PROCESS_CREATE:
+        success_match, is_ioa, attck_t_list, hit_score, rule_hit_name = rule.calc_score_in_create_process(
+            log)
+    elif log_type == LOG_TYPE_PROCESS_ACTION:
+        success_match, is_ioa, attck_t_list, hit_score, rule_hit_name = rule.calc_score_in_action(
+            log)
+    if success_match == False:
+        return had_threat, is_ioa, hit_name, hit_score
+    # 匹配到了首先更新att&ck的t
+    had_threat = update_att_ck(
+        process, hit_score, rule_hit_name, attck_t_list)
+    hit_name = rule_hit_name
+    if is_ioa:
+        had_threat = update_threat(
+            process, hit_score, rule_hit_name)
+    else:
+        is_match_software, software_name, software_score = rule.match_att_ck_software(
+            process.chain.attck_hit_list)
+        if is_match_software:
+            # 匹配到software了,设置为ioa
+            had_threat = update_threat(
+                process, software_score, software_name)
+            hit_name = software_name
+            hit_score = software_score
+    #print('match_threat', had_threat, is_ioa, hit_name, hit_score)
+    # if had_threat != global_vars.THREAT_TYPE_NONE:
+    #    print('path: {} hit_name: {} socre: {}'.format(
+    #          process.path, hit_name, hit_score))
+    return had_threat, is_ioa, hit_name, hit_score
 
 
 def process_log(host, json_log, raw_log):
@@ -20,6 +79,7 @@ def process_log(host, json_log, raw_log):
     chain_hash = ""
     params = ""
     user = ""
+    is_ioa = False
 
     if json_log["action"] == "processcreate":
         pid = log["processid"]
@@ -39,7 +99,7 @@ def process_log(host, json_log, raw_log):
         if path in process.skip_process_path or path in process.skip_process_path:
             return
         parent_process: process.Process = process.get_process_by_pid(ppid)
-        score, rule_hit_name = rule.calc_score_in_create_process(log)
+
         if hash in process.skip_md5:
             return
         if parent_process is None or parent_path in process.root_process_path:
@@ -63,9 +123,9 @@ def process_log(host, json_log, raw_log):
             chain = process.create_chain(parent_process)
             chain.add_process(child, parent_pid)
             current_process = child
-            if score > 0:
-                child.set_score(score, rule_hit_name)
-                had_threat = global_vars.THREAT_TYPE_PROCESS
+
+            had_threat, is_ioa, rule_hit_name, score = match_threat(
+                current_process, log, LOG_TYPE_PROCESS_CREATE)
         else:
             is_white_list = hash in hash_white_list.g_white_list
             child = process.Process(
@@ -74,9 +134,9 @@ def process_log(host, json_log, raw_log):
             child.parent_process = parent_process
             parent_process.chain.add_process(child, ppid)
             current_process = child
-            if score > 0:
-                child.set_score(score, rule_hit_name)
-                had_threat = global_vars.THREAT_TYPE_PROCESS
+
+            had_threat, is_ioa, rule_hit_name, score = match_threat(
+                current_process, log, LOG_TYPE_PROCESS_CREATE)
 
         had_threat_plugin = plugin.dispath_rule_new_process_create(
             host, current_process, raw_log, json_log
@@ -100,6 +160,7 @@ def process_log(host, json_log, raw_log):
                         host,
                         current_process.chain.risk_score,
                         json.dumps(current_process.chain.operationlist),
+                        json.dumps(current_process.chain.attck_hit_list),
                         current_process.chain.hash,
                         current_process.chain.get_json(),
                         global_vars.THREAT_TYPE_PROCESS,
@@ -110,10 +171,8 @@ def process_log(host, json_log, raw_log):
         current_process = process.get_process_by_pid(log["processid"])
         if current_process is not None:
             log["action"] = json_log["action"]
-            score, rule_hit_name = rule.calc_score_in_action(log)
-            if score > 0:
-                current_process.set_score(score, rule_hit_name)
-                had_threat = global_vars.THREAT_TYPE_PROCESS
+            had_threat, is_ioa, rule_hit_name, score = match_threat(
+                current_process, log, LOG_TYPE_PROCESS_ACTION)
             had_threat_plugin = plugin.dispath_rule_new_process_action(
                 host, current_process, raw_log, json_log
             )
@@ -145,6 +204,7 @@ def process_log(host, json_log, raw_log):
                         host,
                         current_process.chain.risk_score,
                         json.dumps(current_process.chain.operationlist),
+                        json.dumps(current_process.chain.attck_hit_list),
                         current_process.chain.hash,
                         current_process.chain.get_json(),
                         global_vars.THREAT_TYPE_PROCESS,
@@ -155,6 +215,7 @@ def process_log(host, json_log, raw_log):
                         host,
                         current_process.chain.risk_score,
                         json.dumps(current_process.chain.operationlist),
+                        json.dumps(current_process.chain.attck_hit_list),
                         current_process.chain.hash,
                         current_process.chain.get_json(),
                         global_vars.THREAT_TYPE_PROCESS,
@@ -179,29 +240,34 @@ def process_log(host, json_log, raw_log):
             target_hash = target_process.md5
         self_hash = current_process.md5
     # 以后有其他排除需求再优化
-    if json_log['action'] == 'imageload' and json_log['data']['imageloaded'] not in hash_white_list.g_white_dll_load_list:
-        sql.push_process_raw(
-            host,
-            raw_json_log,
-            rule_hit_name,
-            score,
-            chain_hash,
-            had_threat,
-            parent_pid,
-            target_pid,
-            self_hash,
-            target_image_path,
-            target_hash,
-            params,
-            user,
-        )
+    if json_log['action'] == 'imageload' and (json_log['data']['imageloaded'][len(json_log['data']['imageloaded']) - 4:] == '.exe' or json_log['data']['imageloaded'] in hash_white_list.g_white_dll_load_list):
+        return
 
-    """
+    if json_log['action'] == 'imageload':
+        print(json_log['data']['imageloaded'])
+        return
+
+    sql.push_process_raw(
+        host,
+        raw_json_log,
+        rule_hit_name,
+        score,
+        chain_hash,
+        had_threat,
+        parent_pid,
+        target_pid,
+        self_hash,
+        target_image_path,
+        target_hash,
+        params,
+        user,
+    )
+    '''
     for iter in process.g_ProcessChainList:
         item: process.Process = iter
         if item.risk_score >= config.MAX_THREAT_SCORE:
             item.print_process()
-    """
+    '''
 
 
 def process_raw_log(raw_logs: list) -> list:

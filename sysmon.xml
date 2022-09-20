@@ -353,6 +353,8 @@
 			<Image condition="image">nmap.exe</Image>
 			<Image condition="image">psinfo.exe</Image>
 			<!--Ports: Suspicious-->
+			<DestinationPort name="HTTP" condition="is">80</DestinationPort> <!--SSH protocol, monitor admin connections-->
+			<DestinationPort name="HTTPS" condition="is">443</DestinationPort> <!--SSH protocol, monitor admin connections-->
 			<DestinationPort name="SSH" condition="is">22</DestinationPort> <!--SSH protocol, monitor admin connections-->
 			<DestinationPort name="Telnet" condition="is">23</DestinationPort> <!--Telnet protocol, monitor admin connections, insecure-->
 			<DestinationPort name="SMTP" condition="is">25</DestinationPort> <!--SMTP mail protocol port, insecure, used by threats-->

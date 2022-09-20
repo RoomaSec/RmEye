@@ -155,8 +155,9 @@ def pull_chain_data():
             "type": threat_data[3],
             "risk_score": threat_data[4],
             "hit_rule": json.loads(threat_data[5]),
-            "chain": json.loads(threat_data[6]),
-            "is_end": threat_data[7],
+            "hit_attck": json.loads(threat_data[6]),
+            "chain": json.loads(threat_data[7]),
+            "is_end": threat_data[8],
         }
     return {"data": return_data}
 
@@ -181,6 +182,7 @@ def process_chain():
                 "id": iter[6],
                 "is_end": iter[7],
                 "start_process": json.loads(iter[8]),
+                "attck_hit_list": json.loads(iter[10]),
             }
         )
     return {"data": return_data}

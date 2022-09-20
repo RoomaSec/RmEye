@@ -34,7 +34,7 @@ mimikatz_dll_list = [
 
 def rule_new_process_create(current_process: process.Process, host, raw_log_data, json_log_data):
     # 服务端提供了一个 plugin_var 变量用于存放当前进程插件的上下文
-    if current_process.path != 'c:\\windows\\system32\\wbem\\wmic.exe' and current_process.parent_process.path != 'c:\\windows\\system32\\svchost.exe':
+    if current_process.path != 'c:\\windows\\system32\\wbem\\wmic.exe' and current_process.parent_process.path != 'c:\\windows\\system32\\svchost.exe' and current_process.path != 'c:\\windows\\system32\\svchost.exe':
         current_process.plugin_var['mimikatz_matched_num'] = 0
         current_process.plugin_var['mimikatz_detected'] = False
     return global_vars.THREAT_TYPE_NONE
