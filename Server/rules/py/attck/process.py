@@ -1,9 +1,9 @@
 rule = [
     {
         'rules': [
-            'originalfilename =~ ".*taskill.exe.*"',
-            'originalfilename =~ ".*net.exe.*" and commandline =~ ".*stop.*"',
-            'originalfilename =~ ".*sc.exe.*" and commandline =~ ".*config.*" and commandline =~ ".*disabled.*"',
+            'originalfilename == "taskill.exe"',
+            'originalfilename == "net.exe" and commandline =~ ".*stop.*"',
+            'originalfilename == "sc.exe" and commandline =~ ".*config.*" and commandline =~ ".*disabled.*"',
         ],
         'attck_hit':['T1489'],
         'score': 30,
@@ -44,7 +44,7 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*vssadmin.exe.*" and commandline =~ ".*create.*"',
+            'originalfilename =~ ".*vssadmin.exe" and commandline =~ ".*create.*"',
         ],
         'attck_hit':['T1003.003'],
         'score': 30,
@@ -52,7 +52,7 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*wbadmin.exe.*" and commandline =~ ".*delete.*"',
+            'originalfilename =~ ".*wbadmin.exe" and commandline =~ ".*delete.*"',
             'originalfilename =~ ".*bcdedit.exe" and commandline =~ ".*recoveryenabled.*no.*"',
             'originalfilename =~ ".*bcdedit.exe" and commandline =~ ".*bootstatuspolicy.*ignoreallfailures.*"',
             'originalfilename =~ ".*wmic.exe" and commandline =~ ".*shadowcopy.*" and commandline =~ ".*delete.*"',
@@ -64,9 +64,9 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*net.exe.*" and commandline =~ ".*view.*"',
-            'originalfilename =~ ".*net.exe.*" and commandline =~ ".*group.*"',
-            'originalfilename =~ ".*ping.exe"',
+            'originalfilename == "net.exe" and commandline =~ ".*view.*"',
+            'originalfilename == "net.exe" and commandline =~ ".*group.*"',
+            'originalfilename == "ping.exe"',
 
         ],
         'attck_hit':['T1018'],
@@ -75,7 +75,7 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*fsutil.exe.*" and commandline =~ ".*deletejournal.*"',
+            'originalfilename =~ ".*fsutil.exe" and commandline =~ ".*deletejournal.*"',
         ],
         'attck_hit':['T1070.004'],
         'score': 10,
@@ -83,11 +83,11 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*net.exe.*" and commandline =~ ".*user.*"',
-            'originalfilename =~ ".*whoami.*"',
+            'originalfilename == ".*net.exe" and commandline =~ ".*user.*"',
+            'originalfilename =~ ".*whoami.exe"',
             'originalfilename =~ ".*query.exe"',
             'originalfilename =~ ".*setspn.exe"',
-            'originalfilename =~ ".*cmdkey.exe.*"'
+            'originalfilename =~ ".*cmdkey.exe"'
         ],
         'attck_hit':['T1087.001'],
         'score': 30,
