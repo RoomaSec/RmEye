@@ -1,1 +1,0 @@
-"use strict";(globalThis["webpackChunksyseye"]=globalThis["webpackChunksyseye"]||[]).push([[904],{6904:(s,a,e)=>{e.r(a),e.d(a,{default:()=>h});var r=e(3673);const n={class:"row q-gutter-md q-mb-sm q-pa-lg"};function t(s,a,e,t,c,o){return(0,r.wg)(),(0,r.iD)("h4",n,"施工中....")}const c=(0,r.aZ)({name:"Dashboard"});var o=e(4260);const u=(0,o.Z)(c,[["render",t]]),h=u}}]);

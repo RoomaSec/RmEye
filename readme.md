@@ -25,6 +25,9 @@ https://key08.com/index.php/2022/08/09/1505.html
 请牢记,RmEye自身定位是轻量级威胁检出工具
 
 ### 最新新闻
+2022/9/22:  
+增加仪表盘,可视化展示检测结果  
+
 2022/9/21:  
 修复了秋季更新的几个bug,增加了`networkconnect`和`FileCreateTimeChange`的ds,增加了`brc4`的检测
 
@@ -49,6 +52,8 @@ https://github.com/RoomaSec/RmEye/blob/main/doc_day0_rule.md
 ### 检出截图
 威胁列表(2022/9/20更新):
 ![image](Image/1.png)
+仪表盘(2022/9/22更新):  
+![image](Image/dashboard.png)  
 进程链行为回溯
 ![image](Image/8.png)
 powershell恶意执行:

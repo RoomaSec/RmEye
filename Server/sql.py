@@ -231,6 +231,25 @@ def push_process_raw(
     return result
 
 
+def query_last_raw_process_log(num):
+    global g_rawdata_table
+    sql_session = sessionmaker(bind=g_engine)
+    # 用g_rawdata_table 不行, utf8编码问题？
+    start_time = int(round(time.time() * 1000))
+    end_time = start_time - 1000 * 60 * 60 * 24 * 7
+    raw_log = (
+        sql_session()
+        .query(raw_process_log)
+        # .filter(
+        #    raw_process_log.timestamp >= end_time
+        # )
+        .limit(num)
+        .all()
+    )
+    sql_session().close()
+    return raw_log
+
+
 def select_process_raw_log_by_time(start: int, end: int):
     global g_rawdata_table
     sql_session = sessionmaker(bind=g_engine)
@@ -245,7 +264,6 @@ def select_process_raw_log_by_time(start: int, end: int):
         )
         .all()
     )
-
     sql_session().close()
     return raw_log
 
@@ -316,6 +334,22 @@ def query_one_threat(threat_id):
     global g_threat_table
     sql_session = sessionmaker(bind=g_engine)
     threat = sql_session().query(g_threat_table).filter_by(id=threat_id).first()
+    sql_session().close()
+    return threat
+
+
+def query_raw_host_log_num(host):
+    global g_rawdata_table
+    sql_session = sessionmaker(bind=g_engine)
+    num = sql_session().query(g_rawdata_table).filter_by(host=host).count()
+    sql_session().close()
+    return num
+
+
+def query_threat_all_num():
+    global g_threat_table
+    sql_session = sessionmaker(bind=g_engine)
+    threat = sql_session().query(g_threat_table).count()
     sql_session().close()
     return threat
 

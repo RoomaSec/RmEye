@@ -10,7 +10,7 @@ from flask import Flask, render_template, request
 import plugin
 import logging
 import html
-
+import statistics
 app = Flask(
     __name__,
     template_folder="./templates",
@@ -53,18 +53,7 @@ def plugin_menu():
 def threat_statistics():
     if request.remote_addr not in config.ALLOW_ACCESS_IP:
         return "Access Denied"
-    # sqlite的count啥的还不如自己查出来自己统计
-    threat_datas = sql.query_all_threat_log(-1)
-    return_data = {"all": len(threat_datas), "confirm": 0,
-                   "ingore": 0, "working": 0}
-    for iter in threat_datas:
-        if iter[9] == 1:
-            return_data["confirm"] += 1
-        elif iter[9] == 2:
-            return_data["ingore"] += 1
-        if iter[7] == 0:
-            return_data["working"] += 1
-    return {"data": return_data}
+    return {"data": statistics.get_threat_nums()}
 
 
 @app.route("/api/v1/query/white_list_all", methods=["GET"])
@@ -196,11 +185,12 @@ def process():
         # 转小写
         host = request.remote_addr
         log.process_log(host, json.loads(body_data.lower()), body_data)
+        statistics.update_loged_num(host)
 
     return {"status": "success"}
 
 
-@app.route("/api/v1/log_hunt", methods=["POST"])
+@ app.route("/api/v1/log_hunt", methods=["POST"])
 def log_rescan():
     if request.remote_addr not in config.ALLOW_ACCESS_IP:
         return "Access Denied"
@@ -223,4 +213,5 @@ if __name__ == "__main__":
     flask_log.setLevel(logging.ERROR)
     print("注意,你正在使用测试版,请随时关注github以获取最新版本:")
     print("https://github.com/RoomaSec/RmEye")
+    # statistics.get_threat_nums()
     app.run(debug=True, host="0.0.0.0")

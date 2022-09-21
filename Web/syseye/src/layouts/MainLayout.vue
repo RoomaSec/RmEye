@@ -123,7 +123,7 @@ export default defineComponent({
   },
   data: function () {
     return {
-      selectLabel: 'non_hanlde_report',
+      selectLabel: 'dashboard',
       drawer: false,
       miniState: true,
       plugin: [],
