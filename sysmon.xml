@@ -282,7 +282,7 @@
 			<Image name="Usermode" condition="begin with">C:\Users</Image> <!--Tools downloaded by users can use other processes for networking, but this is a very valuable indicator.-->
 			<Image name="Caution" condition="begin with">C:\Recycle</Image> <!--Nothing should operate from the RecycleBin locations.-->
 			<Image condition="begin with">C:\ProgramData</Image> <!--Normally, network communications should be sourced from "Program Files" not from ProgramData, something to look at-->
-			<Image condition="begin with">C:\Windows\Temp</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
+			<Image condition="begin with">C:\Windows\</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
 			<Image name="Caution" condition="begin with">\</Image> <!--Devices and VSC shouldn't be executing changes | Credit: @SBousseaden @ionstorm @neu5ron @PerchedSystems [ https://twitter.com/SwiftOnSecurity/status/1133167323991486464 ] -->
 			<Image name="Caution" condition="begin with">C:\perflogs</Image> <!-- Credit @blu3_team [ https://blu3-team.blogspot.com/2019/05/netconn-from-suspicious-directories.html ] -->
 			<Image name="Caution" condition="begin with">C:\intel</Image> <!-- Credit @blu3_team [ https://blu3-team.blogspot.com/2019/05/netconn-from-suspicious-directories.html ] -->
@@ -378,6 +378,7 @@
 		<NetworkConnect onmatch="exclude">
 			<!--SECTION: Microsoft-->
 			<Image condition="begin with">C:\ProgramData\Microsoft\Windows Defender\Platform\</Image>
+			<Image condition="is">C:\Windows\system32\svchost.exe</Image> <!--Microsoft: svchost-->
 			<Image condition="end with">AppData\Local\Microsoft\Teams\current\Teams.exe</Image> <!--Microsoft: Teams-->
 			<DestinationHostname condition="end with">.microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
 			<DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname> <!--Microsoft:Update delivery-->
@@ -423,7 +424,34 @@
 		<!--DATA: UtcTime, ProcessGuid, ProcessId, Image, ImageLoaded, Hashes, Signed, Signature, SignatureStatus-->
 	<RuleGroup name="" groupRelation="or">
 		<ImageLoad onmatch="include">
-			<!--NOTE: Using "include" with no rules means nothing in this section will be logged-->
+			<ImageLoaded condition="contains">samlib.dll</ImageLoaded>
+			<ImageLoaded condition="contains">advapi32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">crypt32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">cryptdll.dll</ImageLoaded>
+			<ImageLoaded condition="contains">gdi32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">imm32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">msasn1.dll</ImageLoaded>
+			<ImageLoaded condition="contains">msvcrt.dll</ImageLoaded>
+			<ImageLoaded condition="contains">rpcrt4.dll</ImageLoaded>
+			<ImageLoaded condition="contains">rsaenh.dll</ImageLoaded>
+			<ImageLoaded condition="contains">samlib.dll</ImageLoaded>
+			<ImageLoaded condition="contains">sechost.dll</ImageLoaded>
+			<ImageLoaded condition="contains">secur32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">shell32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">shlwapi.dll</ImageLoaded>
+			<ImageLoaded condition="contains">sspicli.dll</ImageLoaded>
+			<ImageLoaded condition="contains">user32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">vaultcli.dll</ImageLoaded>
+			<ImageLoaded condition="contains">dbghelp.dll</ImageLoaded>
+			<ImageLoaded condition="contains">winhttp.dll</ImageLoaded>
+			<ImageLoaded condition="contains">credui.dll</ImageLoaded>
+			
+			<ImageLoaded condition="contains">dnsapi.dll</ImageLoaded>
+			<ImageLoaded condition="contains">rtutils.dll</ImageLoaded>
+			<ImageLoaded condition="contains">urlmon.dll</ImageLoaded>
+			<ImageLoaded condition="contains">sensapi.dll</ImageLoaded>
+			<ImageLoaded condition="contains">rasapi32.dll</ImageLoaded>
+			<ImageLoaded condition="contains">napinsp.dll</ImageLoaded>
 		</ImageLoad>
 	</RuleGroup>
 
@@ -585,7 +613,6 @@
 			<TargetFilename name="T1176" condition="end with">.crx</TargetFilename> <!--Chrome extension-->
 			<TargetFilename condition="end with">.dmp</TargetFilename> <!--Process dumps [ (fr) http://blog.gentilkiwi.com/securite/mimikatz/minidump ] -->
 			<TargetFilename condition="end with">.docm</TargetFilename> <!--Microsoft:Office:Word: Macro-->
-			<TargetFilename condition="end with">.otm</TargetFilename> <!--Microsoft:Office:VBS: Macro-->
 			<TargetFilename name="DLL" condition="end with">.dll</TargetFilename> <!--Microsoft:Office:Word: Macro-->
 			<TargetFilename name="EXE" condition="end with">.exe</TargetFilename> <!--Executable-->
 			<TargetFilename name="ProcessHostingdotNETCode" condition="end with">.exe.log</TargetFilename> <!-- [ https://github.com/bitsadmin/nopowershell ] | Credit: @SBousseaden [ https://twitter.com/SBousseaden/status/1137493597769687040 ]  -->
