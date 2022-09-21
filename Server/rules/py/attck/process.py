@@ -131,7 +131,7 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*at.exe.*"',
+            'originalfilename == "at.exe"',
         ],
         'attck_hit':['T1053.002'],
         'score': 10,
@@ -179,9 +179,9 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*net.exe" and commandline =~ ".*domain.*"',
-            'originalfilename =~ ".*net.exe" and commandline =~ ".*view.*"',
-            'originalfilename =~ ".*net.exe" and commandline =~ ".*workstation.*"'
+            'originalfilename == "net.exe" and commandline =~ ".*domain.*"',
+            'originalfilename == "net.exe" and commandline =~ ".*view.*"',
+            'originalfilename == "net.exe" and commandline =~ ".*workstation.*"'
         ],
         'attck_hit':['T1087.002'],
         'score': 10,
@@ -189,7 +189,7 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*netsh.exe" and commandline =~ ".*firewall.*"',
+            'originalfilename == "netsh.exe" and commandline =~ ".*firewall.*"',
         ],
         'attck_hit':['T1562.004'],
         'score': 10,
@@ -289,7 +289,7 @@ rule = [
     },
     {
         'rules': [
-            'originalfilename =~ ".*wmic.exe.*"'
+            'originalfilename == "wmic.exe"'
         ],
         'attck_hit':['T1559.001'],
         'score': 30,

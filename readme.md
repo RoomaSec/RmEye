@@ -25,6 +25,9 @@ https://key08.com/index.php/2022/08/09/1505.html
 请牢记,RmEye自身定位是轻量级威胁检出工具
 
 ### 最新新闻
+2022/9/21:  
+修复了秋季更新的几个bug,增加了`networkconnect`和`FileCreateTimeChange`的ds,增加了`brc4`的检测
+
 2022/9/20:  
 秋季重大更新,规则部分完全重构,目前检出完全基于attck的software.文档有空了再更新
 
@@ -62,7 +65,8 @@ uac提权检测:
 ![image](Image/7.png)
 mimikatz检测:
 ![image](Image/14.png)
-
+brc4检测:
+![image](Image/15.png)
 ### 待做列表
 1. 更好的前端(目前是VUE-CDN模式,不太好,想换成VUE-CLI) 已经完成
 2. 日志回放【目前重点】

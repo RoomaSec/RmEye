@@ -1,6 +1,13 @@
 rule = [
     {
         'rules': [
+            'action == "registryvalueset" and targetobject =~ ".*proxyenable"',
+        ],
+        'attck_hit':['T1562.001'],
+        'name': 'Impair Defenses: Disable or Modify Tools'
+    },
+    {
+        'rules': [
             'action == "processaccess" and targetimage =~ ".*lsass.exe"',
         ],
         'attck_hit':['T1003'],
@@ -45,6 +52,13 @@ rule = [
         ],
         'attck_hit':['T1071.004'],
         'name': 'Application Layer Protocol: DNS'
+    },
+    {
+        'rules': [
+            'action == "filecreatetimechange"',
+        ],
+        'attck_hit':['T1070.006'],
+        'name': 'Indicator Removal on Host: Timestomp'
     },
     {
         'rules': [
@@ -102,5 +116,56 @@ rule = [
         ],
         'attck_hit':['T1003.002'],
         'name': 'OS Credential Dumping: Security Account Manager'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*credui.dll"',
+        ],
+        'attck_hit':['T1047'],
+        'name': 'Windows Management Instrumentation'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*dbghelp.dll"',
+        ],
+        'attck_hit':['T1622'],
+        'name': 'Debugger Evasion'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*winhttp.dll"',
+            'action == "imageload" and imageloaded =~ ".*urlmon.dll"',
+        ],
+        'attck_hit':['T1071.001'],
+        'name': 'Application Layer Protocol: Web Protocols'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*dnsapi.dll"',
+        ],
+        'attck_hit':['T1071.004'],
+        'name': 'Application Layer Protocol: DNS'
+    },
+    # 不应该用dll来当T的,这里应该是api的hook.但是sysmon没这些ds,只能凑合.这非常不专业
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*rtutils.dll"',
+        ],
+        'attck_hit':['CMT0001'],
+        'name': 'Event trace manipulation'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*rasapi32.dll"',
+        ],
+        'attck_hit':['CMT0002'],
+        'name': 'rasapi32 manipulation'
+    },
+    {
+        'rules': [
+            'action == "imageload" and imageloaded =~ ".*napinsp.dll"',
+        ],
+        'attck_hit':['CMT0003'],
+        'name': 'napinsp manipulation'
     }
 ]

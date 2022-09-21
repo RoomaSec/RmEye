@@ -63,7 +63,7 @@ def match_threat(process: process.Process, log, log_type):
                 process, software_score, software_name)
             hit_name = software_name
             hit_score = software_score
-    #print('match_threat', had_threat, is_ioa, hit_name, hit_score)
+    #print('match_threat', process.path, is_ioa, hit_name, hit_score)
     # if had_threat != global_vars.THREAT_TYPE_NONE:
     #    print('path: {} hit_name: {} socre: {}'.format(
     #          process.path, hit_name, hit_score))
@@ -180,6 +180,8 @@ def process_log(host, json_log, raw_log):
                 had_threat = had_threat_plugin
 
     if current_process is not None:
+        # if current_process.path.find("f.exe") != -1:
+        #    print(log)
         if current_process.chain.risk_score >= config.MAX_THREAT_SCORE:
             if had_threat == global_vars.THREAT_TYPE_PROCESS:
                 current_process.chain.update_process_tree()
@@ -240,11 +242,10 @@ def process_log(host, json_log, raw_log):
             target_hash = target_process.md5
         self_hash = current_process.md5
     # 以后有其他排除需求再优化
-    if json_log['action'] == 'imageload' and (json_log['data']['imageloaded'][len(json_log['data']['imageloaded']) - 4:] == '.exe' or json_log['data']['imageloaded'] in hash_white_list.g_white_dll_load_list):
-        return
+    # if json_log['action'] == 'imageload' and (json_log['data']['imageloaded'][len(json_log['data']['imageloaded']) - 4:] == '.exe' or json_log['data']['imageloaded'] in hash_white_list.g_white_dll_load_list):
+    #    return
 
     if json_log['action'] == 'imageload':
-        print(json_log['data']['imageloaded'])
         return
 
     sql.push_process_raw(

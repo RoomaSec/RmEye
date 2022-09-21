@@ -1,4 +1,8 @@
 rule = [
+    {'name': "BRC4", 'rules': ['T1071', 'T1071.001',
+                               'T1622', 'T1047', 'T1562.001'], 'hit_num': 4, 'score':100},
+    {'name': "BRC4#2", 'rules': ['T1071.004',
+                                 'T1071.001', 'T1562.001', 'CMT0001', 'CMT0002', 'CMT0003'], 'hit_num': 6, 'score':100},
     {'name': "Ransomware", 'rules': ['T1071',
                                      'T1036.005', 'T1620', 'T1564.001', 'T1222.001', 'T1059.005', 'T1543.003', 'T1490'], 'hit_num': 7, 'score':100},
     {'name': "APT-System discovery", 'rules': ['T1018',
