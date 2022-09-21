@@ -184,6 +184,9 @@ export default defineComponent({
   },
   mounted () {
     this.get_threatStatistics()
+    setInterval(() => {
+      this.get_threatStatistics()
+    }, 10000)
   }
 })
 </script>
