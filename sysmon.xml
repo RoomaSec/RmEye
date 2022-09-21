@@ -376,6 +376,11 @@
 
 	<RuleGroup name="" groupRelation="or">
 		<NetworkConnect onmatch="exclude">
+			<Image condition="end with">clash-win64.exe</Image>
+			<Image condition="end with">dasHost.exe</Image>
+			<Image condition="end with">DingTalk.exe</Image>
+			<Image condition="end with">vmnat.exe</Image>
+			
 			<!--SECTION: Microsoft-->
 			<Image condition="begin with">C:\ProgramData\Microsoft\Windows Defender\Platform\</Image>
 			<Image condition="is">C:\Windows\system32\svchost.exe</Image> <!--Microsoft: svchost-->
