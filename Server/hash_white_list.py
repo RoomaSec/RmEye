@@ -30,10 +30,12 @@ def check_in_while_list(process: process.Process):
     is_white = process.is_white or process.chain.root_process.is_white or process.parent_process.is_white
     if is_white == False:
         while parent_process:
-            if parent_process is None or parent_process == process.chain.root_process:
+            if parent_process is None:
                 break
             if parent_process.is_white:
                 is_white = True
+                break
+            if parent_process == process.chain.root_process:
                 break
             parent_process = parent_process.parent_process
     return is_white
