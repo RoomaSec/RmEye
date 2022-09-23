@@ -105,7 +105,7 @@ def dispath_html_menu():
 def dispath_html_draw(name):
     for index in range(len(global_vars.g_plugs)):
         _, plug_obj = global_vars.g_plugs[index]
-    if hasattr(plug_obj, "html_draw"):
-        if plug_obj.rm_plugs_config['html'] == name:
-            return plug_obj.html_draw()
+        if hasattr(plug_obj, "html_draw"):
+            if plug_obj.rm_plugs_config['html'] == name:
+                return plug_obj.html_draw()
     return 'Access Denied '
