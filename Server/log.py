@@ -14,7 +14,7 @@ LOG_TYPE_PROCESS_ACTION = 2
 
 
 def update_att_ck(process: process.Process, score, hit_name, attck_t_list):
-    if process.is_white or process.chain.root_process.is_white or process.parent_process.is_white:
+    if hash_white_list.check_in_while_list(process):
         score = 0
     for t in attck_t_list:
         process.set_attck(score, t, hit_name)
@@ -24,8 +24,8 @@ def update_att_ck(process: process.Process, score, hit_name, attck_t_list):
 
 def update_threat(process: process.Process, score, rule_hit_name):
     had_threat = global_vars.THREAT_TYPE_NONE
-    if process.is_white or process.chain.root_process.is_white or process.parent_process.is_white:
-        return had_threat
+    if hash_white_list.check_in_while_list(process):
+        score = 0
     if score > 0:
         # 更新命中的规则
         process.set_score(score, rule_hit_name)

@@ -1,6 +1,14 @@
 rule = [
     {
         'rules': [
+            'action == "processaccess" and targetimage =~ ".*lsass.exe"',
+        ],
+        'attck_hit':['T1003'],
+        'score': 100,
+        'name': 'OS Credential Dumping: LSASS Memory'
+    },
+    {
+        'rules': [
             'action == "processaccess" and targetimage =~ ".*lsass.exe" and grantedaccess & 0x0010 and sourceimage =~ ".*rundll32.exe"',
         ],
         'attck_hit':['T1003.002'],

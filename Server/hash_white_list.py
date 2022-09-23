@@ -1,3 +1,4 @@
+import process
 import sql
 g_white_list = []
 g_white_dll_load_list = [
@@ -22,6 +23,20 @@ g_white_dll_load_list = [
     'c:\\windows\\system32\\user32.dll',
     'c:\\windows\\system32\\vaultcli.dll',
 ]
+
+
+def check_in_while_list(process: process.Process):
+    parent_process = process.parent_process
+    is_white = process.is_white or process.chain.root_process.is_white or process.parent_process.is_white
+    if is_white == False:
+        while parent_process:
+            if parent_process is None or parent_process == process.chain.root_process:
+                break
+            if parent_process.is_white:
+                is_white = True
+                break
+            parent_process = parent_process.parent_process
+    return is_white
 
 
 def add_white_list(path, hash, reason):

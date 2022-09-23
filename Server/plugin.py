@@ -97,8 +97,8 @@ def dispath_html_menu():
     plugin_menu = []
     for index in range(len(global_vars.g_plugs)):
         _, plug_obj = global_vars.g_plugs[index]
-    if hasattr(plug_obj, "html_menu"):
-        plugin_menu.append(plug_obj.html_menu())
+        if hasattr(plug_obj, "html_menu"):
+            plugin_menu.append(plug_obj.html_menu())
     return plugin_menu
 
 

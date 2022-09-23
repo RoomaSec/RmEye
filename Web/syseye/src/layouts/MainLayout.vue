@@ -3,7 +3,7 @@
     <q-header elevated height-hint="98">
       <q-toolbar class="text-primary bg-white">
         <q-toolbar-title> RmEye内部测试版本v0.0.0.1 </q-toolbar-title>
-        <q-btn flat round dense icon="more_vert"></q-btn>
+        <q-btn flat round dense icon="lightbulb"></q-btn>
       </q-toolbar>
     </q-header>
     <q-drawer
