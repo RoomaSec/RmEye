@@ -1,7 +1,7 @@
 import global_vars
 import process
 #import yara
-
+import hash_white_list
 rm_plugs_config = {
     "enable": True,
     "author": "huoji",
@@ -26,7 +26,7 @@ def rule_new_process_create(current_process: process.Process, host, raw_log_data
 
         if 'uac_flag' not in current_process.chain.root_process.plugin_var:
             current_process.chain.root_process.plugin_var['uac_flag'] = integritylevel
-        if integritylevel > current_process.chain.root_process.plugin_var['uac_flag']:
+        if integritylevel > current_process.chain.root_process.plugin_var['uac_flag'] and hash_white_list.check_in_while_list(current_process) == False:
             print('[uac bypass detect] detect uac bypass in process chain {}'.format(
                 current_process.path))
             current_process.chain.root_process.plugin_var['uac_flag'] = integritylevel
