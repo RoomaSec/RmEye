@@ -1,4 +1,3 @@
-import log
 import requests
 import global_vars
 import process
@@ -256,13 +255,9 @@ def asnyc_check_ip(current_process: process.Process, host, ip):
 
     if cache_status == STATUS_VIRUS:
         current_process.set_score(666, "恶意网络链接IP:{}".format(ip))
-        log.update_process_threat_status(
-            current_process, host, global_vars.THREAT_TYPE_PROCESS)
     elif cache_status == STATUS_UNK:
         # crowdstrike: 这个我熟
         current_process.set_score(10, "低信誉ip链接:{}".format(ip))
-        log.update_process_threat_status(
-            current_process, host, global_vars.THREAT_TYPE_PROCESS)
     g_check_ip_list[ip] = cache_status
 
 
@@ -291,13 +286,9 @@ def asnyc_check_hash(current_process: process.Process, host):
 
     if cache_status == STATUS_VIRUS:
         current_process.set_score(666, "恶意软件")
-        log.update_process_threat_status(
-            current_process, host, global_vars.THREAT_TYPE_PROCESS)
     elif cache_status == STATUS_UNK:
         # crowdstrike: 这个我熟
         current_process.set_score(10, "低信誉文件")
-        log.update_process_threat_status(
-            current_process, host, global_vars.THREAT_TYPE_PROCESS)
     g_check_hashes_list[hash] = cache_status
 
 
@@ -314,9 +305,11 @@ def rule_new_process_action(current_process: process.Process, host, raw_log_data
     if rm_plugs_config['apikey'] != "" is not None and json_log_data['action'] == 'networkconnect' and hash_white_list.check_in_while_list(current_process) == False:
         # print('network connect{}'.format(
         #    json_log_data['data']['destinationip']))
-        g_check_ip_list[json_log_data['data']['destinationip']] = -2
-        asnyc_check_ip(current_process, host,
-                       json_log_data['data']['destinationip'])
+        ip_addr = json_log_data['data']['destinationip']
+        if len(ip_addr) >= 5:
+            g_check_ip_list[json_log_data['data']['destinationip']] = -2
+            asnyc_check_ip(current_process, host,
+                           json_log_data['data']['destinationip'])
     return global_vars.THREAT_TYPE_NONE
 
 
