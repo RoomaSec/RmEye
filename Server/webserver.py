@@ -1,15 +1,15 @@
+import logging
 import hash_white_list
 import json
 from flask import Flask
 from flask import request
 import sql
 import log
-import rule
 import config
 from flask import Flask, render_template, request
 import plugin
-import logging
 import html
+import rule
 import statistics
 app = Flask(
     __name__,

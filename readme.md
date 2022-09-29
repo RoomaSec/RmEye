@@ -25,6 +25,9 @@ https://key08.com/index.php/2022/08/09/1505.html
 请牢记,RmEye自身定位是轻量级威胁检出工具
 
 ### 最新新闻
+2022/9/23:  
+国庆节更新,增加ip与hash的ioc插件,目前Rmeye有能力对ip和hash进行标注,使用时务必换成自己的apikey,其他请看下面的ioc部分    
+
 2022/9/22:  
 增加仪表盘,可视化展示检测结果  
 
@@ -50,6 +53,9 @@ https://github.com/RoomaSec/RmEye/blob/main/doc_day0_rule.md
 增加uac提权检测插件`uac_bypass_detect`,但是受限于sysmon,没有办法获取RPC信息,因此只能检测一部分的UAC提权行为.并且有误报,请酌情考虑
 
 ### 检出截图
+IOC(2022/10/1更新):
+![image](Image/16.png)
+![image](Image/17.png)
 威胁列表(2022/9/20更新):
 ![image](Image/1.png)
 仪表盘(2022/9/22更新):  
@@ -139,6 +145,9 @@ SysEye /uninstall
 sysmon /uninstall
 ```
 即可干净卫生的卸载掉RmEye
+
+### IOC
+目前RmEye使用的是`https://metadefender.opswat.com/`的免费IOC,目前的apikey仅用于测试,自己部署的时候请务必打开`plugins/ioc_opswat/opswat.py`把`"apikey": "010d4868aef799750e2828fdf17a4d98"`换成你自己的,否做会不安全(比如其他人能查得到你的请求记录)/有使用量限制(100次一天).所以务必换成你自己注册的账号.这个IOC源是免费的而且好用的,比OTX好用   
 
 ### 规则相关的问题
 1. 规则目前仅120条,很多攻击面没有覆盖,其他规则请访问《社区》

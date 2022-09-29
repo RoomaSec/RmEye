@@ -147,6 +147,7 @@ def delete_white_list(pHash):
         delete(g_hash_white_list_table).where(
             g_hash_white_list_table.columns.hash == pHash)
     )
+    conn.close()
     return result
 
 
@@ -159,6 +160,7 @@ def push_white_list(pPath, pHash, pReason):
     conn = g_engine.connect()
     # 执行语句
     result = conn.execute(ins)
+    conn.close()
     return result
 
 
@@ -228,6 +230,7 @@ def push_process_raw(
     conn = g_engine.connect()
     # 执行语句
     result = conn.execute(ins)
+    conn.close()
     return result
 
 
@@ -303,6 +306,7 @@ def update_threat_log(
         )
     )
     result = conn.execute(update)
+    conn.close()
     return result
 
 
@@ -316,6 +320,7 @@ def handle_threat_log(threat_id, handle_type):
         .where(g_threat_table.columns.id == int(threat_id))
     )
     result = conn.execute(update)
+    conn.close()
     return result
 
 
@@ -327,6 +332,7 @@ def delete_threat(threat_id):
         delete(g_threat_table).where(
             g_threat_table.columns.id == int(threat_id))
     )
+    conn.close()
     return result
 
 
@@ -430,5 +436,6 @@ def push_threat_log(
     conn = g_engine.connect()
     # 执行语句
     result = conn.execute(ins)
+    conn.close()
     # print(raw_json)
     return result

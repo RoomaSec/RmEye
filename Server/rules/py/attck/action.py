@@ -30,6 +30,7 @@ rule = [
             'action == "createremotethread"',
         ],
         'attck_hit':['T1055'],
+        'score': 30,
         'name': 'Process Injection'
     },
     {

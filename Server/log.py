@@ -70,6 +70,53 @@ def match_threat(process: process.Process, log, log_type):
     return had_threat, is_ioa, hit_name, hit_score
 
 
+def update_process_threat_status(current_process: process.Process, host, had_threat):
+    if current_process is not None:
+        # if current_process.path.find("f.exe") != -1:
+        #    print(log)
+        if current_process.chain.risk_score >= config.MAX_THREAT_SCORE:
+            if had_threat == global_vars.THREAT_TYPE_PROCESS:
+                current_process.chain.update_process_tree()
+                threat = sql.select_threat_by_chain_id(
+                    host, current_process.chain.hash, global_vars.THREAT_TYPE_PROCESS
+                )
+                if len(threat) == 0:
+                    process_info: process.Process = None
+
+                    if len(current_process.chain.process_list) > 1:
+                        process_info = current_process.chain.process_list[1]
+                    else:
+                        process_info = current_process
+                    info_save_data = {
+                        "path": process_info.path,
+                        "hash": process_info.md5,
+                        "params": process_info.params,
+                        "user": process_info.user,
+                        "create_time": process_info.time,
+                    }
+                    sql.push_threat_log(
+                        host,
+                        current_process.chain.risk_score,
+                        json.dumps(current_process.chain.operationlist),
+                        json.dumps(current_process.chain.attck_hit_list),
+                        current_process.chain.hash,
+                        current_process.chain.get_json(),
+                        global_vars.THREAT_TYPE_PROCESS,
+                        json.dumps(info_save_data),
+                    )
+                else:
+                    sql.update_threat_log(
+                        host,
+                        current_process.chain.risk_score,
+                        json.dumps(current_process.chain.operationlist),
+                        json.dumps(current_process.chain.attck_hit_list),
+                        current_process.chain.hash,
+                        current_process.chain.get_json(),
+                        global_vars.THREAT_TYPE_PROCESS,
+                        current_process.chain.active == False,
+                    )
+
+
 def process_log(host, json_log, raw_log):
     log = json_log["data"]
     had_threat = global_vars.THREAT_TYPE_NONE
@@ -178,51 +225,7 @@ def process_log(host, json_log, raw_log):
             )
             if had_threat == global_vars.THREAT_TYPE_NONE:
                 had_threat = had_threat_plugin
-
-    if current_process is not None:
-        # if current_process.path.find("f.exe") != -1:
-        #    print(log)
-        if current_process.chain.risk_score >= config.MAX_THREAT_SCORE:
-            if had_threat == global_vars.THREAT_TYPE_PROCESS:
-                current_process.chain.update_process_tree()
-                threat = sql.select_threat_by_chain_id(
-                    host, current_process.chain.hash, global_vars.THREAT_TYPE_PROCESS
-                )
-                if len(threat) == 0:
-                    process_info: process.Process = None
-
-                    if len(current_process.chain.process_list) > 1:
-                        process_info = current_process.chain.process_list[1]
-                    else:
-                        process_info = current_process
-                    info_save_data = {
-                        "path": process_info.path,
-                        "hash": process_info.md5,
-                        "params": process_info.params,
-                        "user": process_info.user,
-                        "create_time": process_info.time,
-                    }
-                    sql.push_threat_log(
-                        host,
-                        current_process.chain.risk_score,
-                        json.dumps(current_process.chain.operationlist),
-                        json.dumps(current_process.chain.attck_hit_list),
-                        current_process.chain.hash,
-                        current_process.chain.get_json(),
-                        global_vars.THREAT_TYPE_PROCESS,
-                        json.dumps(info_save_data),
-                    )
-                else:
-                    sql.update_threat_log(
-                        host,
-                        current_process.chain.risk_score,
-                        json.dumps(current_process.chain.operationlist),
-                        json.dumps(current_process.chain.attck_hit_list),
-                        current_process.chain.hash,
-                        current_process.chain.get_json(),
-                        global_vars.THREAT_TYPE_PROCESS,
-                        current_process.chain.active == False,
-                    )
+    update_process_threat_status(current_process, host, had_threat)
     parent_pid = 0
     target_pid = 0
     self_hash = ""
