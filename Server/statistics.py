@@ -30,6 +30,8 @@ def update_loged_num(host):
         }
     host_list[host]['all_log_num'] += 1
     if time.time() - host_list[host]['last_update_time'] > 60:
+        if host_list[host]['all_log_num'] == 0:
+            del host_list[host]
         host_list[host]['last_update_time'] = time.time()
         host_list[host]['log_num'].append(host_list[host]['all_log_num'])
         host_list[host]['all_log_num'] = 0

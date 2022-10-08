@@ -380,6 +380,7 @@
 			<Image condition="end with">dasHost.exe</Image>
 			<Image condition="end with">DingTalk.exe</Image>
 			<Image condition="end with">vmnat.exe</Image>
+			<Image condition="end with">SysEye.exe</Image>
 			
 			<!--SECTION: Microsoft-->
 			<Image condition="begin with">C:\ProgramData\Microsoft\Windows Defender\Platform\</Image>
