@@ -63,29 +63,29 @@ export default defineComponent({
         title: '发现的威胁',
         icon: 'remove_red_eye',
         value: '200',
-        color1: '#b9b6ab',
-        color2: '#969388'
+        color1: '#EE9B00',
+        color2: '#EE9B00'
       },
       {
         title: '确认的威胁',
         icon: 'flash_on',
         value: '500',
-        color1: '#9f6a61',
-        color2: '#a27a73'
+        color1: '#CA6702',
+        color2: '#CA6702'
       },
       {
         title: '忽略的威胁',
         icon: 'add_moderator',
         value: '50',
-        color1: '#1fd7a2',
-        color2: '#19C896'
+        color1: '#BB3E03',
+        color2: '#BB3E03'
       },
       {
         title: '进行中的威胁',
         icon: 'stream',
         value: '1020',
-        color1: '#f34a50',
-        color2: '#c77c6f'
+        color1: '#AE2012',
+        color2: '#AE2012'
       }
       ],
       threatStatistics: {
@@ -127,6 +127,9 @@ export default defineComponent({
       for (const key in this.threatStatistics.host_list) {
         hostList.push(key)
         hostLoggedNumList.push({
+          itemStyle: {
+            color: '#005F73'
+          },
           name: key,
           type: 'line',
           stack: 'Total',
