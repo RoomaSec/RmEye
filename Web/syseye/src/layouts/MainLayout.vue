@@ -1,22 +1,17 @@
 <template>
-<q-layout view="lHh Lpr lFf" style="background-color: rgb(239, 243, 246)">
+<q-layout view="lHh Lpr lFf" :style="`background-color: ${colors.background}`">
     <q-header elevated height-hint="98">
-        <q-toolbar class="text-white" style="background-color: rgb(210,61,42)">
+        <q-toolbar class="text-white" :style="`background-color: ${colors.toolbar}`">
             <q-toolbar-title> RmEye测试版v1.0.1.3 </q-toolbar-title>
-            <q-btn flat round dense icon="lightbulb">
-              <q-popup-proxy>
-                <q-banner>
-            <div class="q-pa-md row items-start q-gutter-md">
-              <q-color v-model="color1" @change="updateCookie" class="my-picker" />
-              <q-color v-model="color2" @change="updateCookie" class="my-picker" />
-              <q-color v-model="color3" @change="updateCookie" class="my-picker" />
-              <q-color v-model="color4" @change="updateCookie" class="my-picker" />
-            </div>
-                </q-banner>
-          </q-popup-proxy>
+            <q-btn flat dense icon="restore" label="重置颜色" @click="cleanUpCookie">
             </q-btn>
+            <q-popup-proxy>
+                <q-banner>
+                    <q-color v-model="colors.toolbar" @change="updateCookie(colors.toolbar)" class="my-picker" />
+                </q-banner>
+            </q-popup-proxy>
         </q-toolbar>
-        <q-toolbar style="font-size: 16px;background-color:rgb(47,43,48);">
+        <q-toolbar :style="`font-size: 16px;background-color: ${colors.layout}`">
             <q-breadcrumbs active-color="white">
                 <q-breadcrumbs-el label="仪表盘" icon="dashboard" to="/page/dashboard" />
                 <q-breadcrumbs-el label="未处理威胁列表" icon="report" to="#" @click="routerToThreatList(0);" />
@@ -24,6 +19,12 @@
                 <q-breadcrumbs-el label="已忽略威胁列表" icon="texture" to="#" @click="routerToThreatList(2);" />
                 <q-breadcrumbs-el label="白名单列表" icon="list" to="#" @click="routerToWhiteList();" />
             </q-breadcrumbs>
+
+                <q-popup-proxy>
+                    <q-banner>
+                        <q-color v-model="colors.layout" @change="updateCookie(colors.layout)" class="my-picker" />
+                    </q-banner>
+                </q-popup-proxy>
         </q-toolbar>
     </q-header>
     <template v-if="isInPlugin == false">
@@ -40,12 +41,16 @@
 </template>
 
 <script>
+import Base64 from '../assets/b64.js'
+
 import {
   defineComponent
 } from 'vue'
 import HtmlPanel from '../components/Html.vue' // 根据实际路径导入
 import axios from 'axios'
-import { Cookies } from 'quasar'
+import {
+  Cookies
+} from 'quasar'
 export default defineComponent({
   components: {
     HtmlPanel
@@ -61,12 +66,25 @@ export default defineComponent({
       miniState: true,
       plugin: [],
       isInPlugin: false,
-      PluginUrl: ''
+      PluginUrl: '',
+      colors: {
+        layout: 'rgb(47,43,48)',
+        toolbar: 'rgb(210,61,42)',
+        background: 'rgb(239, 243, 246)'
+      }
     }
   },
   methods: {
-    updateCookie (value) {
-      Cookies.set('color', { color: [this.color1, this.color2, this.color3, this.color4] })
+    updateCookie (selectItem) {
+      const b64Obj = new Base64()
+      Cookies.set('custom_banner', b64Obj.encode(JSON.stringify(this.colors)))
+    },
+    cleanUpCookie () {
+      Cookies.remove('custom_threat_item')
+      Cookies.remove('custom_banner')
+
+      // refesh
+      window.location.reload()
     },
     routerToWhiteList () {
       this.isInPlugin = false
@@ -100,6 +118,11 @@ export default defineComponent({
   },
   mounted () {
     this.getPluginsMenu()
+    const coockieCustomBanner = Cookies.get('custom_banner')
+    if (coockieCustomBanner) {
+      const b64Obj = new Base64()
+      this.colors = JSON.parse(b64Obj.decode(coockieCustomBanner))
+    }
   }
 })
 </script>

@@ -14,7 +14,17 @@
                   item.value
                 }}</q-item-label>
                                 <q-item-label>{{ item.title }}</q-item-label>
+                                <q-popup-proxy>
+                                <q-banner>
+                                    <q-color v-model="item.color1" @change="updateCookie(Threatitems[index].color1)" class="my-picker" />
+                                </q-banner>
+                            </q-popup-proxy>
                             </q-item-section>
+                            <q-popup-proxy>
+                                <q-banner>
+                                    <q-color v-model="item.color2" @change="updateCookie(Threatitems[index].color2)" class="my-picker" />
+                                </q-banner>
+                            </q-popup-proxy>
                         </q-item>
                     </div>
                 </div>
@@ -50,11 +60,15 @@
 </template>
 
 <script>
+import Base64 from '../assets/b64.js'
+
 import {
   defineComponent
 } from 'vue'
 import axios from 'axios'
-import { Cookies } from 'quasar'
+import {
+  Cookies
+} from 'quasar'
 import * as echarts from 'echarts'
 export default defineComponent({
   name: 'Dashboard',
@@ -101,6 +115,10 @@ export default defineComponent({
     }
   },
   methods: {
+    updateCookie (selectItem) {
+      const b64Obj = new Base64()
+      Cookies.set('custom_threat_item', b64Obj.encode(JSON.stringify(this.Threatitems)))
+    },
     get_threatStatistics () {
       axios
         .get('/api/v1/get/threat_statistics', {
@@ -191,13 +209,11 @@ export default defineComponent({
     setInterval(() => {
       this.get_threatStatistics()
     }, 10000)
-    const colors = Cookies.get('color')
-    if (colors.color) {
-      this.Threatitems.map((item, index) => {
-        item.color1 = colors.color[index]
-        item.color2 = colors.color[index]
-        return item
-      })
+    const cookieCustomThreatItem = Cookies.get('custom_threat_item')
+    if (cookieCustomThreatItem) {
+      const b64Obj = new Base64()
+
+      this.Threatitems = JSON.parse(b64Obj.decode(cookieCustomThreatItem))
     }
   }
 })
