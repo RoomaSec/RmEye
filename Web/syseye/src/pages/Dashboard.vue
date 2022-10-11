@@ -54,6 +54,7 @@ import {
   defineComponent
 } from 'vue'
 import axios from 'axios'
+import { Cookies } from 'quasar'
 import * as echarts from 'echarts'
 export default defineComponent({
   name: 'Dashboard',
@@ -190,6 +191,14 @@ export default defineComponent({
     setInterval(() => {
       this.get_threatStatistics()
     }, 10000)
+    const colors = Cookies.get('color')
+    if (colors.color) {
+      this.Threatitems.map((item, index) => {
+        item.color1 = colors.color[index]
+        item.color2 = colors.color[index]
+        return item
+      })
+    }
   }
 })
 </script>

@@ -3,7 +3,18 @@
     <q-header elevated height-hint="98">
         <q-toolbar class="text-white" style="background-color: rgb(210,61,42)">
             <q-toolbar-title> RmEye测试版v1.0.1.3 </q-toolbar-title>
-            <q-btn flat round dense icon="lightbulb"></q-btn>
+            <q-btn flat round dense icon="lightbulb">
+              <q-popup-proxy>
+                <q-banner>
+            <div class="q-pa-md row items-start q-gutter-md">
+              <q-color v-model="color1" @change="updateCookie" class="my-picker" />
+              <q-color v-model="color2" @change="updateCookie" class="my-picker" />
+              <q-color v-model="color3" @change="updateCookie" class="my-picker" />
+              <q-color v-model="color4" @change="updateCookie" class="my-picker" />
+            </div>
+                </q-banner>
+          </q-popup-proxy>
+            </q-btn>
         </q-toolbar>
         <q-toolbar style="font-size: 16px;background-color:rgb(47,43,48);">
             <q-breadcrumbs active-color="white">
@@ -34,6 +45,7 @@ import {
 } from 'vue'
 import HtmlPanel from '../components/Html.vue' // 根据实际路径导入
 import axios from 'axios'
+import { Cookies } from 'quasar'
 export default defineComponent({
   components: {
     HtmlPanel
@@ -53,6 +65,9 @@ export default defineComponent({
     }
   },
   methods: {
+    updateCookie (value) {
+      Cookies.set('color', { color: [this.color1, this.color2, this.color3, this.color4] })
+    },
     routerToWhiteList () {
       this.isInPlugin = false
       this.$router.push({
