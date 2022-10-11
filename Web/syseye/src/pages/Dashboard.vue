@@ -63,29 +63,29 @@ export default defineComponent({
         title: '发现的威胁',
         icon: 'remove_red_eye',
         value: '200',
-        color1: '#5064b5',
-        color2: '#3e51b5'
+        color1: '#b9b6ab',
+        color2: '#969388'
       },
       {
         title: '确认的威胁',
         icon: 'flash_on',
         value: '500',
-        color1: '#f37169',
-        color2: '#f34636'
+        color1: '#9f6a61',
+        color2: '#a27a73'
       },
       {
         title: '忽略的威胁',
-        icon: 'texture',
+        icon: 'add_moderator',
         value: '50',
-        color1: '#ea6a7f',
-        color2: '#ea4b64'
+        color1: '#1fd7a2',
+        color2: '#19C896'
       },
       {
         title: '进行中的威胁',
-        icon: 'bar_chart',
+        icon: 'stream',
         value: '1020',
-        color1: '#a270b1',
-        color2: '#9f52b1'
+        color1: '#f34a50',
+        color2: '#c77c6f'
       }
       ],
       threatStatistics: {

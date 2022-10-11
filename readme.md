@@ -25,6 +25,9 @@ https://key08.com/index.php/2022/08/09/1505.html
 请牢记,RmEye自身定位是轻量级威胁检出工具
 
 ### 最新新闻
+2022/10/11:
+重新设计了一下界面...
+
 2022/9/29:  
 国庆节更新,增加ip与hash的ioc插件,目前Rmeye有能力对ip和hash进行标注,使用时务必换成自己的apikey,其他请看下面的ioc部分    
 
@@ -53,6 +56,12 @@ https://github.com/RoomaSec/RmEye/blob/main/doc_day0_rule.md
 增加uac提权检测插件`uac_bypass_detect`,但是受限于sysmon,没有办法获取RPC信息,因此只能检测一部分的UAC提权行为.并且有误报,请酌情考虑
 
 ### 检出截图
+
+新dashboard(2022/10/11更新):
+![image](Image/dashboard_new.png)
+新界面(2022/10/11更新):
+![image](Image/18.png)
+
 IOC(2022/10/1更新):
 ![image](Image/16.png)
 ![image](Image/17.png)
