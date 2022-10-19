@@ -1,3 +1,4 @@
 Flask==2.2.2
+requests==2.28.1
 rule_engine==3.5.0
 SQLAlchemy==1.4.42
