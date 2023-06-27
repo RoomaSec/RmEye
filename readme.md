@@ -196,10 +196,6 @@ https://github.com/VirusTotal/yara
 https://github.com/SwiftOnSecurity/sysmon-config  
 请遵守相关库的开源协议.相关法律风险本项目不负任何责任
 
-### 交流
-开源的目的不是为了免费填鸭式教学,或者被免费拿去发公众号引流、去拿去集成产品方案去赚钱,而是要一起完善这个工具,从而实现共赢.
-![image](Image/group.png)
-
 ### 特别感谢
 @Pwn0x01 yara插件  
 @zeroSteiner 规则引擎插件  
