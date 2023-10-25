@@ -1,11 +1,9 @@
-![image](Image/logo.png) 
+![image](Image/wx.png) 
 
 # RmEye
 RmEye是一个window上的基于att&ck现代EDR设计思想的威胁响应工具.
 不同于EDR,它轻量、高效.自身定位是轻量级威胁检出工具.
 而不是繁重的、需要付费的、效果不明的所谓的EDR
-RmEye基于att&ck模型,如果您对att&ck模型不熟悉,请先阅读相关文章后再使用:  
-https://key08.com/index.php/2022/08/09/1505.html
 
 ### 功能特点
 1. 基于att&ck设计.所有设计只是为了符合att&ck的攻击路径、攻击链(虽然规则里面没有标注T因为懒惰)
